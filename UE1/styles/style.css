@@ -1,0 +1,124 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    font-size: 0.9em;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(#F7F8FB, #D3D8E8);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: #333;
+    min-height: 100vh;
+}
+
+header {
+    background: darkorange; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(#F77300, #CF4B00); /*Safari 5.1-6*/
+    background: -o-linear-gradient(#F77300, #CF4B00); /*Opera 11.1-12*/
+    background: -moz-linear-gradient(#F77300, #CF4B00); /*Fx 3.6-15*/
+    background: linear-gradient(#F77300, #CF4B00); /*Standard*/
+    box-shadow: 0 -1px 15px 0 #333;
+    overflow: auto;
+    margin: 0;
+    padding: 0.6em;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.logo {
+    margin-right: 0.5em;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 7em;
+}
+
+.submit {
+    display: block;
+    text-decoration: none;
+    color: #fff;
+    border-radius: 0.2em;
+    border: 1px solid #003B7C;
+    background: -webkit-linear-gradient(#006BAC, #003B7C); /*Safari 5.1-6*/
+    background: -o-linear-gradient(#006BAC, #003B7C); /*Opera 11.1-12*/
+    background: -moz-linear-gradient(#006BAC, #003B7C); /*Fx 3.6-15*/
+    background: linear-gradient(#006BAC, #003B7C); /*Standard*/
+    flex-basis: 100%;
+}
+
+.form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+.formfield {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.formfield label {
+    margin-bottom: 4px;
+    display: inline-block;
+}
+
+.formfield input {
+    height: 2em;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 5px;
+    min-width: 0;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.formsubmit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 5em;
+}
+
+@media (max-width: 399px) {
+    .form {
+        padding: 2em 1.5em;
+    }
+
+    .submit {
+        flex-basis: 100%;
+    }
+}
+
+@media (min-width: 400px) {
+    .formfield {
+        flex-direction: row;
+    }
+
+    .formfield label,input {
+        flex-shrink: 0;
+        flex-basis: 50%;
+    }
+
+    .formsubmit {
+        width: 75%;
+    }
+}
+
+@media (min-width: 1200px) {
+    .form {
+        padding: 2em 6em;
+    }
+}
