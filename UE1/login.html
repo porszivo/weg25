@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="styles/login.css">
+    <script>
+    </script>
+</head>
+<body>
+    <header>
+        <img class="logo" src="images/big-logo-small.png" alt="BIG Smart Home Logo"/>
+        BIG Smart Home
+    </header>
+    <main>
+        <form class="form" method="post" action="#">
+            <h2 id="header-login">Anmelden</h2>
+            <div>
+                <label for="username">Benutzername</label>
+                <input id="username" name="Username" type="text" required>
+            </div>
+            <div>
+                <label for="password">Passwort</label>
+                <input id="password" name="Password" type="password" required>
+            </div>
+            <div>
+                <button class="submit">
+                    Anmelden
+                </button>
+            </div>
+        </form>
+    </main>
+    <footer>
+        <p id="Copyright"> &copy; 2017 BIG Smart Home
+    </footer>
+</body>
+</html>
+
+
+
+<!-- pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,12}" -->
