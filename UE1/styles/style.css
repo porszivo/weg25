@@ -54,7 +54,9 @@ footer {
     background: -o-linear-gradient(#006BAC, #003B7C); /*Opera 11.1-12*/
     background: -moz-linear-gradient(#006BAC, #003B7C); /*Fx 3.6-15*/
     background: linear-gradient(#006BAC, #003B7C); /*Standard*/
-    flex-basis: 100%;
+    font-size: 15px;
+    padding: 0.8em 0.3em;
+    flex-basis: 50%;
 }
 
 .form {
@@ -68,6 +70,7 @@ footer {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    padding: 8px 0;
 }
 
 .formfield label {
@@ -89,7 +92,7 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 5em;
+    flex-direction: row;
 }
 
 @media (max-width: 399px) {
