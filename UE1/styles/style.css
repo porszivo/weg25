@@ -89,6 +89,7 @@ footer {
 
 .formfield input {
     height: 2em;
+    padding: 0.5em;
     border: 1px solid #ccc;
     box-sizing: border-box;
     border-radius: 5px;
@@ -164,7 +165,7 @@ span.navigation-menu-small {
 }
 
 @media (max-width: 399px) {
-
+    /* TODO: */
     .submit {
         flex-basis: 100%;
     }
