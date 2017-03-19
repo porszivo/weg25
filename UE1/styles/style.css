@@ -176,9 +176,14 @@ span.navigation-menu-small {
 }
 
 @media (max-width: 399px) {
-    /* TODO: */
     .submit {
         flex-basis: 100%;
+        width: 100%;
+    }
+
+    .formsubmit {
+        margin: 0;
+        height: 3em;
     }
 }
 
