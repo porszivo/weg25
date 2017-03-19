@@ -52,6 +52,8 @@ footer {
     height: 7em;
 }
 
+
+
 .submit {
     display: block;
     text-decoration: none;
@@ -162,6 +164,15 @@ span.navigation-menu-small {
 
 .navigation-menu-small:hover .dropdown-content {
     display:block;
+}
+
+.divider{
+    width:5px;
+    height:auto;
+    display:inline-block;
+}
+.input-group{
+	float: right;
 }
 
 @media (max-width: 399px) {
