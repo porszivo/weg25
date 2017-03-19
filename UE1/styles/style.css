@@ -170,6 +170,9 @@ span.navigation-menu-small {
     height:auto;
     display:inline-block;
 }
+.input-group{
+	float: right;
+}
 
 @media (max-width: 399px) {
 
