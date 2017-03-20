@@ -8,8 +8,109 @@
 <body>
 <header>
     <img class="logo" src="images/big-logo-small.png" alt="BIG Smart Home Logo"/>
-    <h1>BIG Smart Home</h1>
+    <h1 class="logoheadline">BIG Smart Home</h1>
+    <span class="navigation-menu hidesmall"><a href="options.html">Optionen</a></span>
+    <span class="divider"></span>
+    <span class="navigation-menu hidesmall"><a href="login.html">Abmelden</a></span>
+    <span class="navigation-menu-small hidebig">
+        ☰
+        <div class="dropdown-content">
+            <a href="options.html">Optionen </a>
+            <a href="login.html"> Abmelden</a>
+        </div>
+    </span>
 </header>
+<main>
+
+    <div class="sidebar">
+        <h2 id="header-login">Serverstatus:</h2>
+        <div class="formfield">
+            <label for="username"><b>Benutzer</b></label>
+            <div class="input-group">
+                <label for="username">Administrator</label>
+            </div>
+
+        </div>
+        <div class="formfield">
+            <label for="time"><b>Systemstartzeit</b></label>
+            <div class="input-group">
+                <label for="time">10:00</label></div>
+
+        </div>
+        <div class="formfield">
+            <label for="datetime"><b>Systemstartdatum</b></label>
+            <div class="input-group">
+                <label for="datetime">06.03.2017 </label></div>
+
+        </div>
+        <div class="formfield">
+            <label for="error"><b>Fehlgeschlagene Logins</b></label>
+            <div class="input-group">
+                <label for="error">3</label></div>
+
+        </div>
+
+
+
+    </div>
+
+    <!-- Geräte-->
+    <div class="content">
+        <h2 id="header-login">Geräte</h2>
+        <div class="boxed">
+
+
+            <img class="logo" src="images/thermometer_warm.svg" width=100/>
+
+
+        </div>
+
+        <div class="boxed">
+
+            <img class="logo" src="images/thermometer_cold.svg" width=100/>
+
+        </div>
+
+        <div class="formfield">
+            <form class="form" method="post" action="#">
+                <img class="logo" src="images/bulb_off.svg" height=100/>
+            </form>
+        </div>
+
+        <div class="boxed">
+            <form class="form" method="post" action="#">
+                <img class="logo" src="images/bulb_on.svg" width=100 height=100/>
+            </form>
+        </div>
+
+        <div>
+            <form class="form" method="post" action="#">
+                <img class="logo" src="images/webcam_on.svg" width=100 height=100/>
+            </form>
+        </div>
+
+        <div>
+            <form class="form" method="post" action="#">
+                <img class="logo" src="images/webcam_off.svg" width=100 height=100/>
+            </form>
+        </div>
+
+        <div>
+            <form class="form" method="post" action="#">
+                <img class="logo" src="images/roller_shutter_closed.svg" width=100 height=100/>
+            </form>
+        </div>
+
+        <div>
+            <form class="form" method="post" action="#">
+                <img class="logo" src="images/roller_shutter_halfopen.svg" width=100 height=100/>
+            </form>
+        </div>
+    </div>
+</main>
+<footer>
+    <p id="Copyright"> &copy; 2017 BIG Smart Home
+</footer>
 
 </body>
 </html>
