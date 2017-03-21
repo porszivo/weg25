@@ -173,9 +173,24 @@ span.navigation-menu-small {
     display:block;
 }
 
+.styleButton{
+    text-decoration: none;
+    color: white;
+}
+
+.boxTitle{
+    width: 100%;
+    padding: 0 0 0 20px;
+}
+
 .boxed {
-    border: 1px solid black;
+
+    border-radius: 5px;
     margin: 1em;
+    padding: 0 0 0 10px;
+    -moz-box-shadow: 6px 6px 6px 6px #CCC;
+    -webkit-box-shadow: 6px 6px 6px 6px #CCC;
+    box-shadow: 6px 6px 6px 6px #CCC;
 
 }
 
@@ -184,16 +199,23 @@ span.navigation-menu-small {
     width: 40%;
 
 }
+.boxedLeft img{
+    height: 100px;
+    padding: 15px 0 0 30px;
+
+}
 .boxedRight{
     width: 60%;
     height: 100%;
     float: left;
     background-color: #fff;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
 }
 .boxedRight ul{
     list-style-type: none;
     margin: 0;
-    padding: 0;
+    padding: 0 0 0 10px;
     flex-grow: 1;
 
 }
@@ -202,29 +224,30 @@ span.navigation-menu-small {
 }
 
 .boxedFooter img{
-    height: 10px;
-    align-items: flex-end;
-    display: flex;
-    justify-content: flex-end;
+    height: 15px;
+    padding: 0 5px 0 0;
 }
 
 .boxedFooter{
-
-    height: 10px;
+    float: right;
 
 }
 .sidebar{
     width: 100%;
     float: right;
-    border-bottom: 1px solid grey;
+    border-bottom: 1px solid lightgrey;
     text-decoration: none;
+    margin: 0;
 
 
 }
 .sidebar ul{
     list-style-type: none;
-    margin: 0;
     padding: 0;
+
+}
+.sidebar li{
+    margin-bottom: 15px;
 }
 
 .sidebarRight{
@@ -233,6 +256,7 @@ span.navigation-menu-small {
 
 .labelSidebar{
     font-weight: 700;
+
 }
 
 .content{
@@ -288,8 +312,12 @@ span.navigation-menu-small {
 
     .sidebar{
         float: right;
-        width: 30%;
+        width: 95%;
         padding: 0 1em 0 1em;
+    }
+
+    .boxed{
+        width: 100%;
     }
 }
 
@@ -299,15 +327,15 @@ span.navigation-menu-small {
         justify-content: center;
     }
     .sidebar{
-        width: 30%;
+        width: 40%;
         float: right;
-        border-left: 1px solid grey;
+        border-left: 1px solid lightgrey;
         border-bottom: none;
         order: 2;
     }
 
     .boxed{
-        width: 75%;
+        width: 100%;
     }
 }
 
@@ -317,11 +345,13 @@ span.navigation-menu-small {
     }
 
     .sidebar{
+        width: 25%;
         float: right;
-        width: 30%;
+
+
     }
     .boxed{
-        width: 35%;
+        width: 45%;
     }
 
 }
