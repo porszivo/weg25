@@ -40,10 +40,7 @@ header {
 }
 
 main {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-
+    margin: 0;
 }
 
 footer {
@@ -69,12 +66,7 @@ footer {
     justify-content: center;
 }
 
-.divider{
-    width: 5px;
-    height: auto;
-    display: inline-block;
-}
-.input-group{
+.input-group {
     float: right;
 }
 
@@ -121,30 +113,21 @@ footer {
     background: -moz-linear-gradient(#006BAC, #003B7C); /*Fx 3.6-15*/
     background: linear-gradient(#006BAC, #003B7C); /*Standard*/
     font-size: 15px;
-    display: block;
+    margin: 0 0 0 0.4em;
     text-decoration: none;
     color: #fff;
     border-radius: 0.4em;
     border: 1px solid #003B7C;
-
+    cursor: pointer;
 }
 
-.navigation-menu-small {
-    padding: 0.85em 1.3em;
-    background: -webkit-linear-gradient(#006BAC, #003B7C); /*Safari 5.1-6*/
-    background: -o-linear-gradient(#006BAC, #003B7C); /*Opera 11.1-12*/
-    background: -moz-linear-gradient(#006BAC, #003B7C); /*Fx 3.6-15*/
-    background: linear-gradient(#006BAC, #003B7C); /*Standard*/
-    font-size: 15px;
-    margin: 0;
+.navigation-menu a {
     text-decoration: none;
     color: #fff;
-    border-radius: 0.4em;
-    border: 1px solid #003B7C;
 }
 
-span.navigation-menu-small {
-    display:inline-block;
+span.navigation-menu {
+    display: inline-block;
     float: right;
 }
 
@@ -152,7 +135,7 @@ span.navigation-menu-small {
     display: none;
     position: absolute;
     right: 0;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
 }
 
@@ -164,108 +147,118 @@ span.navigation-menu-small {
     background: linear-gradient(#006BAC, #003B7C); /*Standard*/
     font-size: 15px;
     display: block;
-    text-decoration: none;
-    color: #fff;
     border: 1px solid #003B7C;
 }
 
-.navigation-menu-small:hover .dropdown-content {
-    display:block;
+.navigation-menu:hover .dropdown-content {
+    display: block;
 }
 
-.styleButton{
-    text-decoration: none;
-    color: white;
+.content {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: flex-start;
+    border-top: solid thin gray;
+    margin-left: 0.5em;
 }
 
-.boxTitle{
-    width: 100%;
-    padding: 0 0 0 20px;
+.wrapper {
+
+    border-top: solid thin lightgray;
+}
+
+.deviceHeadline {
+    float:top;
+    margin: 0.5em 0.5em;
 }
 
 .boxed {
-
-    border-radius: 5px;
-    margin: 1em;
-    padding: 0 0 0 10px;
-    -moz-box-shadow: 6px 6px 6px 6px #CCC;
-    -webkit-box-shadow: 6px 6px 6px 6px #CCC;
-    box-shadow: 6px 6px 6px 6px #CCC;
-
+    margin: 0.6em;
+    border-radius: 0.5em;
+    box-shadow: 0 -1px 15px 0 #333;
+    overflow: hidden;
+    height: 10em;
+    background: #fff;
 }
 
-.boxedLeft{
+.devicePicture {
     float: left;
-    width: 40%;
-
-}
-.boxedLeft img{
-    height: 100px;
-    padding: 15px 0 0 30px;
-
-}
-.boxedRight{
-    width: 60%;
     height: 100%;
-    float: left;
-    background-color: #fff;
-    border-bottom-right-radius: 5px;
-    border-top-right-radius: 5px;
-}
-.boxedRight ul{
-    list-style-type: none;
-    margin: 0;
-    padding: 0 0 0 10px;
-    flex-grow: 1;
-
-}
-.boxedPicture{
-    width: 100px;
-}
-
-.boxedFooter img{
-    height: 15px;
-    padding: 0 5px 0 0;
-}
-
-.boxedFooter{
-    float: right;
-
-}
-.sidebar{
-    width: 100%;
-    float: right;
-    border-bottom: 1px solid lightgrey;
-    text-decoration: none;
-    margin: 0;
-
-
-}
-.sidebar ul{
-    list-style-type: none;
-    padding: 0;
-
-}
-.sidebar li{
-    margin-bottom: 15px;
-}
-
-.sidebarRight{
-    float: right;
-}
-
-.labelSidebar{
-    font-weight: 700;
-
-}
-
-.content{
+    width: 45%;
     display: flex;
-    flex-wrap: wrap;
-    float: left;
-
+    align-items: center;
+    justify-content: center;
+    background: #D3D8E8;
 }
 
+.devicePicture img {
+    max-width: 100%;
+    max-height: 90%;
+    margin: 0.5em;
+}
+
+.deviceDescription {
+    display: inline-block;
+    padding-left: 1.0em;
+    float: left;
+    position: relative;
+    width: 51%;
+    height: 100%;
+}
+
+.deviceDescription ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    flex-grow: 1;
+}
+
+.deviceTitle {
+    font-size: 145%;
+}
+
+.deviceName {
+    font-size: 110%;
+}
+
+.deviceMenu {
+    height: 20px;
+    bottom: 0.2em;
+    right: 0.5em;
+    position: absolute;
+}
+
+.deviceMenu img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.sidebar {
+    margin: 0 0.5em;
+    line-height: 1.5em;
+    padding-bottom: 1em;
+    clear: right;
+    overflow: auto;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.sidebar li{
+    margin-bottom: 0.5em
+}
+
+.sidebarRight {
+    float: right;
+}
+
+.labelSidebar {
+    font-weight: 700;
+}
 
 @media (max-width: 399px) {
 
@@ -278,30 +271,16 @@ span.navigation-menu-small {
         margin: 0;
         height: 3em;
     }
-}
 
-@media (max-width: 599px) {
-    .hidesmall {
-        position: absolute;
-        top: -9999px;
-        left: -9999px;
-    }
-}
-
-@media (min-width: 600px) {
-    .hidebig {
-        position: absolute;
-        top: -9999px;
-        left: -9999px;
-    }
 }
 
 @media (min-width: 400px) {
+
     .formfield {
         flex-direction: row;
     }
 
-    .formfield label,input {
+    .formfield label, input {
         flex-shrink: 0;
         flex-basis: 50%;
     }
@@ -310,48 +289,75 @@ span.navigation-menu-small {
         width: 75%;
     }
 
-    .sidebar{
-        float: right;
-        width: 95%;
-        padding: 0 1em 0 1em;
+    .content{
+        border: none;
     }
-
     .boxed{
         width: 100%;
     }
+
+
+
+
 }
 
-@media (min-width: 768px){
-    main{
-        flex-direction: row;
-        justify-content: center;
-    }
-    .sidebar{
-        width: 40%;
-        float: right;
-        border-left: 1px solid lightgrey;
-        border-bottom: none;
-        order: 2;
+@media (max-width: 599px) {
+
+    .hidesmall {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
     }
 
-    .boxed{
+}
+
+@media (min-width: 600px) {
+
+    .hidebig {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+}
+
+@media (min-width: 768px) {
+
+    .sidebar {
+        float: right;
+        width: 33%;
+        height: 100%;
+    }
+
+    .content {
+        width: 64%;
+        float: left;
+        border-top: none;
+        border-right: thin solid lightgray;
+    }
+
+    .boxed {
         width: 100%;
     }
+
 }
 
 @media (min-width: 1200px) {
+
     .form {
         padding: 2em 6em;
     }
 
-    .sidebar{
-        width: 25%;
-        float: right;
-
-
+    .sidebar {
+        width: 22%;
     }
-    .boxed{
-        width: 45%;
+
+    .content {
+        width: 76%;
+    }
+
+    .boxed {
+        width: 47%;
     }
 
 }

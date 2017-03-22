@@ -9,10 +9,9 @@
 <header>
     <img class="logo" src="images/big-logo-small.png" alt="BIG Smart Home Logo"/>
     <h1 class="logoheadline">BIG Smart Home</h1>
-    <span class="navigation-menu hidesmall"><a href="options.html" class="styleButton">Optionen</a></span>
-    <span class="divider"></span>
-    <span class="navigation-menu hidesmall"><a href="login.html" class="styleButton">Abmelden</a></span>
-    <span class="navigation-menu-small hidebig">
+    <span class="navigation-menu hidesmall"><a href="options.html">Optionen</a></span>
+    <span class="navigation-menu hidesmall"><a href="login.html">Abmelden</a></span>
+    <span class="navigation-menu hidebig">
         ☰
         <div class="dropdown-content">
             <a href="options.html">Optionen </a>
@@ -20,9 +19,7 @@
         </div>
     </span>
 </header>
-
 <main>
-
     <div class="sidebar">
         <h2>Serverstatus:</h2>
         <ul>
@@ -39,210 +36,180 @@
                 <span class="labelSidebar">Fehlgeschlagene Logins </span><span class="sidebarRight">3</span>
             </li>
         </ul>
-
-
     </div>
-
-    <div class="content" >
-
-      <div class="boxTitle">
-          <h2>Geräte</h2>
-      </div>
-        <div class="boxed">
-            <div class="boxedLeft">
-                <img src="images/thermometer_warm.svg" alt="Thermometer warm" class="boxedPicture" >
+    <div class="wrapper">
+        <h2 class="deviceHeadline">Geräte</h2>
+        <div class="content">
+            <div class="boxed">
+                <div class="devicePicture"><img src="images/thermometer_warm.svg" alt="Thermometer warm"
+                                                class="boxedPicture"></div>
+                <div class="deviceDescription">
+                    <ul>
+                        <li>
+                            <p class="deviceTitle">Heizk&ouml;rper Esszimmer</p>
+                        </li>
+                        <li>
+                            <span class="deviceName">Heizk&ouml;rperthermostat</span>
+                        </li>
+                        <li>
+                            eQ-3 Smart
+                        </li>
+                    </ul>
+                    <p class="deviceMenu">
+                        <img src="images/edit.png" alt="Edit">
+                        <img src="images/remove.png" alt="Remove">
+                    </p>
+                </div>
             </div>
-            <div class="boxedRight">
-                <ul>
-                    <li>
-                        <h3>Heizk&ouml;rper Esszimmer</h3>
-
-                    </li>
-                    <li>
-                        <span class="boxedName">Heizk&ouml;rperthermostat</span>
-                    </li>
-                    <li>
-                        eQ-3 Smart
-
-                    </li>
-                </ul>
-                <p class="boxedFooter">
-                    <img src="images/edit.png" alt="Edit">
-                    <img src="images/remove.png" alt="Remove">
-                </p>
+            <div class="boxed">
+                <div class="devicePicture"><img src="images/thermometer_cold.svg" alt="Thermometer warm"
+                                                class="boxedPicture"></div>
+                <div class="deviceDescription">
+                    <ul>
+                        <li>
+                            <p class="deviceTitle">Heizk&ouml;rper Badezimmer</p>
+                        </li>
+                        <li>
+                            <span class="deviceName">Heizk&ouml;rperthermostat</span>
+                        </li>
+                        <li>
+                            eQ-3 Smart
+                        </li>
+                    </ul>
+                    <p class="deviceMenu">
+                        <img src="images/edit.png" alt="Edit">
+                        <img src="images/remove.png" alt="Remove">
+                    </p>
+                </div>
             </div>
-        </div>
-        <div class="boxed">
-            <div class="boxedLeft">
-                <img src="images/thermometer_cold.svg" alt="Thermometer cold" class="boxedPicture">
+            <div class="boxed">
+                <div class="devicePicture"><img src="images/bulb_off.svg" alt="Thermometer warm" class="boxedPicture">
+                </div>
+                <div class="deviceDescription">
+                    <ul>
+                        <li>
+                            <p class="deviceTitle">Beleuchtung Au&szlig;en</p>
+                        </li>
+                        <li>
+                            <span class="deviceName">Gl&uuml;hbirne</span>
+                        </li>
+                        <li>
+                            Osram Lightify
+                        </li>
+                    </ul>
+                    <p class="deviceMenu">
+                        <img src="images/edit.png" alt="Edit">
+                        <img src="images/remove.png" alt="Remove">
+                    </p>
+                </div>
             </div>
-            <div class="boxedRight">
-                <ul>
-                    <li>
-                        <h3>Heizk&ouml;rper Badezimmer</h3>
-
-                    </li>
-                    <li>
-                        <span class="boxedName">Heizk&ouml;rperthermostat</span>
-                    </li>
-                    <li>
-                        eQ-3 Smart
-
-                    </li>
-                </ul>
-                <p class="boxedFooter">
-                    <img src="images/edit.png" alt="Edit">
-                    <img src="images/remove.png" alt="Remove">
-                </p>
+            <div class="boxed">
+                <div class="devicePicture"><img src="images/bulb_on.svg" alt="Thermometer warm" class="boxedPicture">
+                </div>
+                <div class="deviceDescription">
+                    <ul>
+                        <li>
+                            <p class="deviceTitle">Beleuchtung K&uuml;che</p>
+                        </li>
+                        <li>
+                            <span class="deviceName">Gl&uuml;hbirne</span>
+                        </li>
+                        <li>
+                            Playbulb Smart
+                        </li>
+                    </ul>
+                    <p class="deviceMenu">
+                        <img src="images/edit.png" alt="Edit">
+                        <img src="images/remove.png" alt="Remove">
+                    </p>
+                </div>
             </div>
-        </div>
-        <div class="boxed">
-            <div class="boxedLeft">
-                <img src="images/bulb_off.svg" alt="Bulb off" class="boxedPicture">
+            <div class="boxed">
+                <div class="devicePicture"><img src="images/webcam_on.svg" alt="Thermometer warm" class="boxedPicture">
+                </div>
+                <div class="deviceDescription">
+                    <ul>
+                        <li>
+                            <p class="deviceTitle">Kamera Vordert&uuml;r</p>
+                        </li>
+                        <li>
+                            <span class="deviceName">&Uuml;berwachungskamera</span>
+                        </li>
+                        <li>
+                            ABUS Funk-Außenkamera TVAC16010A
+                        </li>
+                    </ul>
+                    <p class="deviceMenu">
+                        <img src="images/edit.png" alt="Edit">
+                        <img src="images/remove.png" alt="Remove">
+                    </p>
+                </div>
             </div>
-            <div class="boxedRight">
-                <ul>
-                    <li>
-                        <h3>Beleuchtung Außen</h3>
-
-                    </li>
-                    <li>
-                        <span class="boxedName">Gl&uuml;hbirne</span>
-                    </li>
-                    <li>
-                        Osram Lightify
-
-                    </li>
-                </ul>
-                <p class="boxedFooter">
-                    <img src="images/edit.png" alt="Edit">
-                    <img src="images/remove.png" alt="Remove">
-                </p>
+            <div class="boxed">
+                <div class="devicePicture"><img src="images/webcam_off.svg" alt="Thermometer warm" class="boxedPicture">
+                </div>
+                <div class="deviceDescription">
+                    <ul>
+                        <li>
+                            <p class="deviceTitle">Kamera Wohnzimmer</p>
+                        </li>
+                        <li>
+                            <span class="deviceName">Webcam</span>
+                        </li>
+                        <li>
+                            HiKam S5
+                        </li>
+                    </ul>
+                    <p class="deviceMenu">
+                        <img src="images/edit.png" alt="Edit">
+                        <img src="images/remove.png" alt="Remove">
+                    </p>
+                </div>
             </div>
-        </div>
-
-        <div class="boxed">
-            <div class="boxedLeft">
-                <img src="images/bulb_on.svg" alt="Bulb on" class="boxedPicture">
+            <div class="boxed">
+                <div class="devicePicture"><img src="images/roller_shutter_halfopen.svg" alt="Thermometer warm"
+                                                class="boxedPicture"></div>
+                <div class="deviceDescription">
+                    <ul>
+                        <li>
+                            <p class="deviceTitle">Rollladen Wohnzimmer</p>
+                        </li>
+                        <li>
+                            <span class="deviceName">Rollladen</span>
+                        </li>
+                        <li>
+                            Somfy RS100 io
+                        </li>
+                    </ul>
+                    <p class="deviceMenu">
+                        <img src="images/edit.png" alt="Edit">
+                        <img src="images/remove.png" alt="Remove">
+                    </p>
+                </div>
             </div>
-            <div class="boxedRight">
-                <ul>
-                    <li>
-                        <h3>Beleuchtung K&uuml;che</h3>
-
-                    </li>
-                    <li>
-                        <span class="boxedName">Gl&uuml;hbirne</span>
-                    </li>
-                    <li>
-                        Playbulb Smart
-
-                    </li>
-                </ul>
-                <p class="boxedFooter">
-                    <img src="images/edit.png" alt="Edit">
-                    <img src="images/remove.png" alt="Remove">
-                </p>
-            </div>
-        </div>
-        <div class="boxed">
-            <div class="boxedLeft">
-                <img src="images/webcam_on.svg" alt="Webcam on" class="boxedPicture">
-            </div>
-            <div class="boxedRight">
-                <ul>
-                    <li>
-                        <h3>Kamera Vordert&uuml;r</h3>
-
-                    </li>
-                    <li>
-                        <span class="boxedName">&Uuml;berwachungskamera</span>
-                    </li>
-                    <li>
-                        ABUS Funk-Außenkamera TVAC16010A
-
-                    </li>
-                </ul>
-                <p class="boxedFooter">
-                    <img src="images/edit.png" alt="Edit">
-                    <img src="images/remove.png" alt="Remove">
-                </p>
-            </div>
-        </div>
-        <div class="boxed">
-            <div class="boxedLeft">
-                <img src="images/webcam_off.svg" alt="Webcam off" class="boxedPicture">
-            </div>
-            <div class="boxedRight">
-                <ul>
-                    <li>
-                        <h3>Kamera Wohnzimmer</h3>
-
-                    </li>
-                    <li>
-                        <span class="boxedName">Webcam</span>
-                    </li>
-                    <li>
-                        HiKam S5
-
-                    </li>
-                </ul>
-                <p class="boxedFooter">
-                    <img src="images/edit.png" alt="Edit">
-                    <img src="images/remove.png" alt="Remove">
-                </p>
-            </div>
-        </div>
-        <div class="boxed">
-            <div class="boxedLeft">
-                <img src="images/roller_shutter_closed.svg" alt="Roller Shutter closed" class="boxedPicture">
-            </div>
-            <div class="boxedRight">
-                <ul>
-                    <li>
-                        <h3>Rolladen Wohnzimmer</h3>
-
-                    </li>
-                    <li>
-                        <span class="boxedName">Rolladen</span>
-                    </li>
-                    <li>
-                        Somfy RS100 io
-
-                    </li>
-                </ul>
-                <p class="boxedFooter">
-                    <img src="images/edit.png" alt="Edit">
-                    <img src="images/remove.png" alt="Remove">
-                </p>
-            </div>
-        </div>
-        <div class="boxed">
-            <div class="boxedLeft">
-                <img src="images/roller_shutter_halfopen.svg" alt="Roller Shutter halfopen" class="boxedPicture">
-            </div>
-            <div class="boxedRight">
-                <ul>
-                    <li>
-                        <h3>Rolladen Wohnzimmer</h3>
-
-                    </li>
-                    <li>
-                        <span class="boxedName">Rolladen</span>
-                    </li>
-                    <li>
-                        Somfy RS100 io
-
-                    </li>
-                </ul>
-                <p class="boxedFooter">
-                    <img src="images/edit.png" alt="Edit">
-                    <img src="images/remove.png" alt="Remove">
-                </p>
+            <div class="boxed">
+                <div class="devicePicture"><img src="images/roller_shutter_halfopen.svg" alt="Thermometer warm"
+                                                class="boxedPicture"></div>
+                <div class="deviceDescription">
+                    <ul>
+                        <li>
+                            <p class="deviceTitle">Rollladen Wohnzimmer</p>
+                        </li>
+                        <li>
+                            <span class="deviceName">Rollladen</span>
+                        </li>
+                        <li>
+                            Somfy RS100 io
+                        </li>
+                    </ul>
+                    <p class="deviceMenu">
+                        <img src="images/edit.png" alt="Edit">
+                        <img src="images/remove.png" alt="Remove">
+                    </p>
+                </div>
             </div>
         </div>
     </div>
-
 </main>
 <footer>
     <p id="Copyright"> &copy; 2017 BIG Smart Home
