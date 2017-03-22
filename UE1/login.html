@@ -7,32 +7,32 @@
 </head>
 <body>
 
-    <header>
-        <img class="logo" src="images/big-logo-small.png" alt="BIG Smart Home Logo"/>
-        <h1>BIG Smart Home</h1>
-    </header>
+<header>
+    <img class="logo" src="images/big-logo-small.png" alt="BIG Smart Home Logo"/>
+    <h1 class="logoheadline">BIG Smart Home</h1>
+</header>
 
-
-    <main>
-        <form class="form" method="post" action="#">
-            <h2 id="header-login">Anmelden</h2>
-            <div class="formfield">
+<main>
+    <div class="form-container">
+        <h2 class="header-login">Anmelden</h2>
+        <form class="form" method="post" action="overview.html">
+            <div class="formrow">
                 <label for="username">Benutzername</label>
                 <input id="username" name="Username" type="text" required>
             </div>
-            <div class="formfield">
+            <div class="formrow">
                 <label for="password">Passwort</label>
                 <input id="password" name="Password" type="password" required>
             </div>
-            <div class="formsubmit formfield">
-                <button class="submit">
-                    Anmelden
-                </button>
+            <div class="formrow formsubmit">
+                <button class="submit">Anmelden</button>
             </div>
         </form>
-    </main>
-    <footer>
-        <p class="copyright">&copy; 2017 BIG Smart Home</p>
-    </footer>
+    </div>
+</main>
+
+<footer>
+    <p class="copyright">&copy; 2017 BIG Smart Home</p>
+</footer>
 </body>
 </html>

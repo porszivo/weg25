@@ -20,26 +20,28 @@
 </header>
 
 <main>
-    <form class="form" method="post" action="#">
-        <h2 id="header-login">Passwort &auml;ndern</h2>
-        <div class="formfield">
-            <label for="oldPassword">Altes Passwort</label>
-            <input id="oldPassword" name="OldPassword" type="password" placeholder="Altes Passwort" required>
-        </div>
-        <div class="formfield">
-            <label for="newPassword">Neues Passwort</label>
-            <input id="newPassword" name="NewPassword" type="password" placeholder="Neues Passwort" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,12}" required>
-        </div>
-        <div class="formfield">
-            <label for="newPasswordRep">Passwort wiederholen</label>
-            <input id="newPasswordRep" name="NewPasswordRep" type="password" placeholder="Neues Passwort wiederholen" required>
-        </div>
-        <div class="formsubmit formfield">
-            <button class="submit">
-                &Auml;nderung speichern
-            </button>
-        </div>
-    </form>
+    <div class="form-container">
+        <h2 class="header-login">Passwort &auml;ndern</h2>
+        <form class="form" method="post" action="#">
+            <div class="formrow">
+                <label for="oldPassword">Altes Passwort</label>
+                <input id="oldPassword" name="OldPassword" type="password" placeholder="Altes Passwort" required>
+            </div>
+            <div class="formrow">
+                <label for="newPassword">Neues Passwort</label>
+                <input id="newPassword" name="NewPassword" type="password" placeholder="Neues Passwort" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,12}" required>
+            </div>
+            <div class="formrow">
+                <label for="newPasswordRep">Passwort wiederholen</label>
+                <input id="newPasswordRep" name="NewPasswordRep" type="password" placeholder="Neues Passwort wiederholen" required>
+            </div>
+            <div class="formsubmit formrow">
+                <button class="submit">
+                    &Auml;nderung speichern
+                </button>
+            </div>
+        </form>
+    </div>
 </main>
 <footer>
     <p id="Copyright"> &copy; 2017 BIG Smart Home
