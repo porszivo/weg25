@@ -50,8 +50,35 @@ footer {
     height: 7em;
 }
 
+/** Login and Options **/
+.form-container  {
+    margin: 0 1.5em 0 1.5em;
+}
+
+.header-login {
+    font-size: 175%;
+}
+
+.formrow {
+    display: flex;
+    flex-direction: column;
+}
+
+.formrow input {
+    height: 2.4em;
+    font-size: 105%;
+    margin: 1em 0 1em 0;
+    padding: 0 0.5em;
+    border-radius: 0.4em;
+    border-style: inset;
+    border-width: thin;
+}
+
+.formsubmit {
+    margin-top: 1em;
+}
+
 .submit {
-    display: block;
     text-decoration: none;
     color: #fff;
     border-radius: 0.4em;
@@ -62,48 +89,6 @@ footer {
     background: linear-gradient(#006BAC, #003B7C); /*Standard*/
     font-size: 15px;
     padding: 0.8em 0.3em;
-    flex-basis: 50%;
-    justify-content: center;
-}
-
-.input-group {
-    float: right;
-}
-
-.form {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    box-sizing: border-box;
-}
-
-.formfield {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 8px 0;
-}
-
-.formfield label {
-    margin-bottom: 4px;
-    display: inline-block;
-}
-
-.formfield input {
-    height: 2em;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-    border-radius: 5px;
-    min-width: 0;
-    justify-content: center;
-    flex-direction: row;
-}
-
-.formsubmit {
-    display: flex;
-    align-items: center;
-    margin-left: 25%;
-    height: 5em;
 }
 
 .navigation-menu {
@@ -159,12 +144,11 @@ span.navigation-menu {
     flex-wrap: wrap;
     flex-direction: row;
     align-items: flex-start;
-    border-top: solid thin gray;
     margin-left: 0.5em;
 }
 
 .wrapper {
-
+    margin: 0 0.5em;
     border-top: solid thin lightgray;
 }
 
@@ -235,12 +219,16 @@ span.navigation-menu {
 }
 
 .sidebar {
-    margin: 0 0.5em;
-    line-height: 1.5em;
+    margin: 0.5em 0.5em;
+    line-height: 2.5em;
     padding-bottom: 1em;
     clear: right;
     overflow: auto;
 }
+
+.sidebar h2 {
+     margin: 0.5em 0;
+ }
 
 .sidebar ul {
     list-style-type: none;
@@ -260,44 +248,45 @@ span.navigation-menu {
     font-weight: 700;
 }
 
-@media (max-width: 399px) {
-
-    .submit {
-        flex-basis: 100%;
-        width: 100%;
-    }
-
-    .formsubmit {
-        margin: 0;
-        height: 3em;
-    }
-
-}
-
 @media (min-width: 400px) {
 
-    .formfield {
-        flex-direction: row;
+    .form-container  {
+        margin: 0 5%;
     }
 
-    .formfield label, input {
-        flex-shrink: 0;
-        flex-basis: 50%;
+    .formrow {
+        flex-direction: row;
+        flex-wrap: wrap;
+        display: flex;
+        align-items: baseline;
+    }
+
+    .formrow input {
+        width: 48%;
+        display: flex;
+        float: right;
+    }
+
+    .formrow label {
+        width: 47%;
+        display: flex;
+        align-content: left;
+        justify-content: left;
+    }
+
+    .submit {
+        width: 50%;
     }
 
     .formsubmit {
-        width: 75%;
+        display:flex;
+        align-content: center;
+        justify-content: center;
     }
 
-    .content{
-        border: none;
-    }
     .boxed{
         width: 100%;
     }
-
-
-
 
 }
 
@@ -325,34 +314,39 @@ span.navigation-menu {
 
     .sidebar {
         float: right;
-        width: 33%;
-        height: 100%;
+        width: 34%;
+        margin: 0.5em 0.5em 0 0;
     }
 
     .content {
-        width: 64%;
-        float: left;
-        border-top: none;
-        border-right: thin solid lightgray;
+        padding-right: 0.5em;
     }
 
     .boxed {
         width: 100%;
     }
 
+    .wrapper {
+        border-top: none;
+        width: 63%;
+        float: left;
+        border-right: thin solid lightgray;
+        margin-top: 0.84em;
+    }
+
 }
 
 @media (min-width: 1200px) {
 
-    .form {
-        padding: 2em 6em;
+    .form-container  {
+        margin: 5em 6em;
     }
 
     .sidebar {
         width: 22%;
     }
 
-    .content {
+    .wrapper {
         width: 76%;
     }
 
