@@ -166,6 +166,11 @@ span.navigation-menu {
     background: #fff;
 }
 
+.boxed:hover{
+
+    border: 0.4em solid blue;
+}
+
 .devicePicture {
     float: left;
     height: 100%;
@@ -270,8 +275,6 @@ span.navigation-menu {
     .formrow label {
         width: 47%;
         display: flex;
-        align-content: left;
-        justify-content: left;
     }
 
     .submit {
