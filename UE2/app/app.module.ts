@@ -4,15 +4,25 @@ import { FormsModule }    from '@angular/forms';
 import { ChartsModule } from 'ng2-charts';
 
 import { AppComponent }         from './components/app.component';
+import {OptionsComponent} from "./components/options.component";
+import {LoginComponent} from "./components/login.component";
+import {OverviewComponent} from "./components/overview.component";
+import {DetailsComponent} from "./components/details.component";
+import {AppRoutingModule} from "./app-routing.module";
 
 @NgModule({
   imports: [
-    BrowserModule,
-    FormsModule,
-    ChartsModule,
+      BrowserModule,
+      FormsModule,
+      ChartsModule,
+      AppRoutingModule
   ],
   declarations: [
-    AppComponent,
+      AppComponent,
+      OptionsComponent,
+      LoginComponent,
+      OverviewComponent,
+      DetailsComponent
   ],
   providers: [
   ],
