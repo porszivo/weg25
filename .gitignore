@@ -13,3 +13,4 @@ local.properties
 *.pdf
 */screenshots
 *.iml
+node_modules/
