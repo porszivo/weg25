@@ -9,6 +9,7 @@ import {LoginComponent} from "./components/login.component";
 import {OverviewComponent} from "./components/overview.component";
 import {DetailsComponent} from "./components/details.component";
 import {AppRoutingModule} from "./app-routing.module";
+import {DeviceService} from "./services/device.service";
 
 @NgModule({
   imports: [
@@ -24,7 +25,7 @@ import {AppRoutingModule} from "./app-routing.module";
       OverviewComponent,
       DetailsComponent
   ],
-  providers: [
+  providers: [ DeviceService
   ],
   bootstrap: [ AppComponent ]
 })
