@@ -31,16 +31,16 @@ header {
     flex-grow: 1;
 }
 
-.form {
-    padding: 2em 1.5em;
-}
-
 .logo {
     margin-right: 0.5em;
 }
 
 main {
     margin: 0;
+<<<<<<< HEAD
+=======
+    flex-grow: 1;
+>>>>>>> origin/marcel
 }
 
 footer {
@@ -48,6 +48,7 @@ footer {
     align-items: center;
     justify-content: center;
     height: 7em;
+    padding-bottom: 0;
 }
 
 /** Login and Options **/
@@ -104,6 +105,7 @@ footer {
     border-radius: 0.4em;
     border: 1px solid #003B7C;
     cursor: pointer;
+<<<<<<< HEAD
 }
 
 .navigation-menu a {
@@ -111,6 +113,15 @@ footer {
     color: #fff;
 }
 
+=======
+}
+
+.navigation-menu a {
+    text-decoration: none;
+    color: #fff;
+}
+
+>>>>>>> origin/marcel
 span.navigation-menu {
     display: inline-block;
     float: right;
@@ -137,6 +148,7 @@ span.navigation-menu {
 
 .navigation-menu:hover .dropdown-content {
     display: block;
+<<<<<<< HEAD
 }
 
 .content {
@@ -187,6 +199,52 @@ span.navigation-menu {
     margin: 0.5em;
 }
 
+=======
+}
+
+.content {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.wrapper {
+    margin: 0 0.5em;
+    border-top: solid thin gray;
+}
+
+.deviceHeadline {
+    margin: 0.4em 0.4em;
+}
+
+.boxed {
+    margin: 0.6em;
+    border-radius: 0.5em;
+    box-shadow: 0 -1px 15px 0 #333;
+    overflow: hidden;
+    height: 10em;
+    width: 100%;
+    background: #fff;
+}
+
+.devicePicture {
+    float: left;
+    height: 100%;
+    width: 45%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #D3D8E8;
+}
+
+.devicePicture img {
+    max-width: 100%;
+    max-height: 90%;
+    margin: 0.5em;
+}
+
+>>>>>>> origin/marcel
 .deviceDescription {
     display: inline-block;
     padding-left: 1.0em;
@@ -201,6 +259,7 @@ span.navigation-menu {
     margin: 0;
     padding: 0;
     flex-grow: 1;
+<<<<<<< HEAD
 }
 
 .deviceTitle {
@@ -235,16 +294,55 @@ span.navigation-menu {
      margin: 0.5em 0;
  }
 
+=======
+}
+
+.deviceTitle {
+    font-size: 145%;
+}
+
+.deviceName {
+    font-size: 110%;
+}
+
+.deviceMenu {
+    height: 20px;
+    bottom: 0.2em;
+    right: 0.5em;
+    position: absolute;
+}
+
+.deviceMenu img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.sidebar {
+    margin: 0.5em 0.5em;
+    line-height: 2.5em;
+    padding-bottom: 1em;
+    clear: right;
+    overflow: auto;
+}
+
+.sidebar h2 {
+    margin: 0.5em 0;
+}
+
+>>>>>>> origin/marcel
 .sidebar ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
 
+<<<<<<< HEAD
 .sidebar li{
     margin-bottom: 0.5em
 }
 
+=======
+>>>>>>> origin/marcel
 .sidebarRight {
     float: right;
 }
@@ -253,6 +351,25 @@ span.navigation-menu {
     font-weight: 700;
 }
 
+<<<<<<< HEAD
+@media (min-width: 400px) {
+=======
+@media (max-width: 399px) {
+>>>>>>> origin/marcel
+
+    .form-container  {
+        margin: 0 5%;
+    }
+
+<<<<<<< HEAD
+    .formrow {
+        flex-direction: row;
+        flex-wrap: wrap;
+        display: flex;
+        align-items: baseline;
+    }
+
+=======
 @media (min-width: 400px) {
 
     .form-container  {
@@ -266,6 +383,7 @@ span.navigation-menu {
         align-items: baseline;
     }
 
+>>>>>>> origin/marcel
     .formrow input {
         width: 48%;
         display: flex;
@@ -275,6 +393,11 @@ span.navigation-menu {
     .formrow label {
         width: 47%;
         display: flex;
+<<<<<<< HEAD
+=======
+        align-content: left;
+        justify-content: left;
+>>>>>>> origin/marcel
     }
 
     .submit {
@@ -287,10 +410,13 @@ span.navigation-menu {
         justify-content: center;
     }
 
+<<<<<<< HEAD
     .boxed{
         width: 100%;
     }
 
+=======
+>>>>>>> origin/marcel
 }
 
 @media (max-width: 599px) {
@@ -318,6 +444,10 @@ span.navigation-menu {
     .sidebar {
         float: right;
         width: 34%;
+<<<<<<< HEAD
+=======
+        height: 100%;
+>>>>>>> origin/marcel
         margin: 0.5em 0.5em 0 0;
     }
 
@@ -347,12 +477,21 @@ span.navigation-menu {
 
     .sidebar {
         width: 22%;
+<<<<<<< HEAD
     }
 
     .wrapper {
         width: 76%;
     }
 
+=======
+    }
+
+    .wrapper {
+        width: 76%;
+    }
+
+>>>>>>> origin/marcel
     .boxed {
         width: 47%;
     }
