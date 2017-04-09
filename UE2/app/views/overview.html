@@ -27,13 +27,15 @@
   <main aria-labelledby="devicesheadline">
     <h2 class="main-headline" id="devicesheadline">Geräte</h2>
     <div class="devices">
-      <div *ngFor="let device of devices" class="device-outer" (click)="goToDetail(device)"  > <!-- TODO: [data-device-id]=device.id -->
-
-        <a href="javascript:void(0)" class="device"
+      <div *ngFor="let device of devices" class="device-outer"> <!-- TODO: [data-device-id]=device.id -->
+        <a [routerLink]="['/detail', device.id]" class="device"
            title="{{device.description}}">
           <dl class="device-properties">
             <dt>Anzeigename</dt>
-            <dd class="device-displayname">{{device.display_name}}</dd>
+            <dd class="device-displayname" *ngIf="isFocusDevice(device)">
+              <input [(ngModel)]="device.display_name" placeholder="display_name" (keyup.enter)="uneditDevice(device)"/>
+            </dd>
+            <dd class="device-displayname" *ngIf="!isFocusDevice(device)">{{device.display_name}}</dd>
             <dt>Gerätetyp</dt>
             <dd class="device-type">{{device.type}}</dd>
             <dt>Gerätename</dt>
@@ -45,7 +47,7 @@
           </div>
         </a>
         <ul class="device-actions">
-          <li><a href=""><img class="device-edit" src="../../images/edit.png" alt="edit device"></a></li>
+          <li><img class="device-edit" src="../../images/edit.png" alt="edit device" (click)="editDevice(device)"></li>
           <li><a href=""><img class="device-remove" src="../../images/remove.png" alt="remove device"></a></li>
         </ul>
       </div>

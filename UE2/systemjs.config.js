@@ -1,6 +1,6 @@
 /**
  * System configuration for Angular samples
- * Adjust as necessary for your application needs.
+ * Adjust as necessary for your application needs.b
  */
 (function (global) {
   System.config({

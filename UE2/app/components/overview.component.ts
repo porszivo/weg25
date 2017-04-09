@@ -11,6 +11,7 @@ import {Device} from "../model/device";
 export class OverviewComponent implements OnInit {
 
     devices: Device[];
+    focusDevice: Device;
 
     constructor(private router: Router, private deviceService: DeviceService) {}
 
@@ -24,6 +25,18 @@ export class OverviewComponent implements OnInit {
 
     goToDetail(device: Device): void {
         this.router.navigate(['/detail', device.id]);
+    }
+
+    editDevice(device: Device): void {
+        this.focusDevice = device;
+    }
+
+    isFocusDevice(device: Device): boolean {
+        return this.focusDevice==device;
+    }
+
+    uneditDevice(device: Device): void {
+        this.focusDevice = null;
     }
 
 }
