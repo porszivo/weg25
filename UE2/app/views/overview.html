@@ -27,7 +27,7 @@
   <main aria-labelledby="devicesheadline">
     <h2 class="main-headline" id="devicesheadline">Geräte</h2>
     <div class="devices">
-      <div *ngFor="let device of devices" class="device-outer"> <!-- TODO: [data-device-id]=device.id -->
+      <div *ngFor="let device of devices" class="device-outer"> <!-- TODO: needs to be implemented [data-device-id]=device.id -->
         <a [routerLink]="['/detail', device.id]" class="device"
            title="{{device.description}}">
           <dl class="device-properties">
