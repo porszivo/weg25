@@ -17,7 +17,7 @@ export class DetailsComponent implements OnInit {
 
     ngOnInit(): void {
         this.router.params
-            .switchMap((params: Params) => this.heroService.getDevice(params['_value']['id']))
+            .switchMap((params: Params) => this.deviceService.getDevice(params['_value']['id']))
             .subscribe(device => this.device = device);
     }
 
