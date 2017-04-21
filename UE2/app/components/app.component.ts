@@ -10,6 +10,8 @@ export class AppComponent implements OnInit {
   constructor(private route:Router) {
     console.log(route.url);
   }
+
   ngOnInit(): void {
   }
+
 }

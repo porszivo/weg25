@@ -39,4 +39,14 @@ export class OverviewComponent implements OnInit {
         this.focusDevice = null;
     }
 
+    /**
+     * only links when device is not in edit mode
+     * @param device
+     */
+    linkToDetails(device: Device): void {
+        if(this.focusDevice == null) {
+            this.router.navigate(['/detail', device.id]);
+        }
+    }
+
 }

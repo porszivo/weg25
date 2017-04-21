@@ -28,7 +28,7 @@
     <h2 class="main-headline" id="devicesheadline">Geräte</h2>
     <div class="devices">
       <div *ngFor="let device of devices" class="device-outer"> <!-- TODO: needs to be implemented [data-device-id]=device.id -->
-        <a [routerLink]="['/detail', device.id]" class="device"
+        <a class="device" (click)="linkToDetails(device)"
            title="{{device.description}}">
           <dl class="device-properties">
             <dt>Anzeigename</dt>

@@ -10,8 +10,6 @@ import {OverviewComponent} from "./components/overview.component";
 import {DetailsComponent} from "./components/details.component";
 import {AppRoutingModule} from "./app-routing.module";
 import {DeviceService} from "./services/device.service";
-import {EqualValidator} from "./equalvalidator.directive";
-
 @NgModule({
   imports: [
       BrowserModule,
@@ -24,8 +22,7 @@ import {EqualValidator} from "./equalvalidator.directive";
       OptionsComponent,
       LoginComponent,
       OverviewComponent,
-      DetailsComponent,
-      EqualValidator
+      DetailsComponent
   ],
   providers: [ DeviceService
   ],
