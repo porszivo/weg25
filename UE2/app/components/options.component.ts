@@ -7,6 +7,23 @@ import {Component, OnInit} from "@angular/core";
 
 export class OptionsComponent {
 
-    /** todo: */
+    /* todo: */
+
+    oldP : String = ' ';
+    newP : String = ' ';
+    repeatP : String = ' ';
+
+    isTrue(){
+        if (this.oldP != ' ' && this.newP != ' ' && this.repeatP != ' ' && this.newP == this.repeatP){
+
+            return true;
+
+        }else {
+
+            return false;
+
+        }
+    }
+
 
 }
