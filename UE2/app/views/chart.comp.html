@@ -1,0 +1,30 @@
+<div class="details-outer">
+    <div class="details-image-container">
+        <canvas baseChart width="400" height="400"
+                [datasets]="lineChartData"
+                [labels]="lineChartLabels"
+                [options]="lineChartOptions"
+                [colors]="lineChartColors"
+                [legend]="lineChartLegend"
+                [chartType]="lineChartType"></canvas>
+    </div>
+    <div class="details-data">
+        <label class="accessibility" for="details-log">Letzte Werteänderungen</label>
+        <textarea id="details-log" class="detail-logs" placeholder="Gerätelog" readonly rows="6" [(ngModel)]="detaillog" split-array>
+          </textarea>
+        <div class="details-settings">
+            <h3 class="details-headline">Temperatur einstellen</h3>
+
+            <form #f="ngForm" class="update-form" (ngSubmit)="submit(f.value)">
+                <label class="update-form-field" id="current-value">
+                    <span class="current-value">derzeit: {{currentVal}}</span>
+                </label>
+                <label class="accessibility" for="new-value">Bitte gewünschten Wert eingeben.</label>
+                <input type="number" step="0.01" min="0" max="50" id="new-value" value="1"
+                       class="update-form-field form-input" name="new-value" ngModel ngList="" required>
+                <input type="submit" id="submit-value" class="update-form-field button" name="submit-value"
+                       value="Wert setzen">
+            </form>
+        </div>
+    </div>
+</div>

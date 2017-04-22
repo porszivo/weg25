@@ -13,9 +13,9 @@ export class DetailsComponent implements OnInit {
 
     device: Device;
     controlType: ControlUnit[];
-    bool: boolean = false;
-    enu: boolean = false;
-    cont: boolean = false;
+    bool: ControlUnit;
+    enu: ControlUnit;
+    cont: ControlUnit;
 
     constructor(
         private deviceService: DeviceService,
@@ -31,12 +31,11 @@ export class DetailsComponent implements OnInit {
     setDevice(device: Device): void {
         this.device = device;
         this.controlType = device.control_units;
-        console.log(this.controlType);
+
         for(var ct of this.controlType) {
-            if(ct["type"]==0) this.bool = true;
-            if(ct["type"]==1) this.enu = true;
-            if(ct["type"]==2) this.cont = true;
-            console.log(ct);
+            if(ct["type"]==0) this.bool = ct;
+            if(ct["type"]==1) this.enu = ct;
+            if(ct["type"]==2) this.cont = ct;
         }
     }
 

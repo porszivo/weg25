@@ -10,6 +10,7 @@ import {OverviewComponent} from "./components/overview.component";
 import {DetailsComponent} from "./components/details.component";
 import {AppRoutingModule} from "./app-routing.module";
 import {DeviceService} from "./services/device.service";
+import {ChartComponent} from "./components/charts/chart.component";
 @NgModule({
   imports: [
       BrowserModule,
@@ -23,7 +24,8 @@ import {DeviceService} from "./services/device.service";
       OptionsComponent,
       LoginComponent,
       OverviewComponent,
-      DetailsComponent
+      DetailsComponent,
+      ChartComponent
   ],
   providers: [ DeviceService
   ],
