@@ -7,7 +7,7 @@ import {Device} from "../../model/device";
 
 export class EnuChartComponent implements OnInit {
     @Input() device: Device;
-    control_units: Object[];
+    control_units: any;
     currentVal: any = 0;
     currentLabel: string;
     lastTimestamp: number;

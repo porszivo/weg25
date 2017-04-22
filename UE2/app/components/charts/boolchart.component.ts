@@ -9,7 +9,7 @@ export class BoolChartComponent implements OnInit {
 
     @Input() device: Device;
 
-    control_units: Object[];
+    control_units: any;
     currentVal: boolean;
     lastTimestamp: number;
 
