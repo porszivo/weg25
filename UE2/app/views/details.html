@@ -1,4 +1,4 @@
-<div class="main-container">
+<div *ngIf="device" class="main-container">
   <aside class="sidebar" aria-labelledby="serverinfoheadline">
     <div class="server-info-container">
       <h2 class="accessibility" id="serverinfoheadline">Serverstatus</h2>
@@ -26,12 +26,12 @@
   </aside>
   <main aria-labelledby="deviceheadline" class="details-container">
     <div attr.data-device-id="19ff7d47-bd80-4a5d-adfb-bc77558facad" class="details-headline">
-      <h2 class="main-headline" id="deviceheadline">device.display_name</h2>
+      <h2 class="main-headline" id="deviceheadline">{{device.display_name}}</h2>
     </div>
     <div class="details-holder">
 
       <!-- Steuerung für kontinuierliche Werte -->
-      <div class="details-outer">
+      <div *ngIf="cont" class="details-outer">
         <div class="details-image-container">
           <img class="details-image" src="../../images/placeholder_continuous.PNG">
         </div>
@@ -57,7 +57,7 @@
       </div>
 
       <!-- Steuerung für diskrete Werte -->
-      <div class="details-outer">
+      <div *ngIf="enu" class="details-outer">
         <div class="details-image-container">
           <img class="details-image" src="../../images/placeholder_enum.PNG">
         </div>
@@ -85,7 +85,7 @@
       </div>
 
       <!-- Steuerung für boolesche Werte -->
-      <div class="details-outer">
+      <div *ngIf="bool" class="details-outer">
         <div class="details-image-container">
           <img class="details-image" src="../../images/placeholder_boolean.PNG">
         </div>
