@@ -31,11 +31,11 @@
     <div class="details-holder">
 
       <!-- Steuerung für kontinuierliche Werte -->
-      <chart-comp *ngIf="cont" [control_units]="cont"></chart-comp>
+      <line-comp *ngIf="cont" [device]="device"></line-comp>
 
-      <chart-comp *ngIf="bool" [control_units]="bool"></chart-comp>
+      <bool-comp *ngIf="bool" [device]="device"></bool-comp>
 
-      <chart-comp *ngIf="enu" [control_units]="enu"></chart-comp>
+      <enu-comp *ngIf="enu" [device]="device"></enu-comp>
 
     </div>
 

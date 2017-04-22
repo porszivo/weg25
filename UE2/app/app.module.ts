@@ -10,7 +10,9 @@ import {OverviewComponent} from "./components/overview.component";
 import {DetailsComponent} from "./components/details.component";
 import {AppRoutingModule} from "./app-routing.module";
 import {DeviceService} from "./services/device.service";
-import {ChartComponent} from "./components/charts/chart.component";
+import {LineChartComponent} from "./components/charts/linechart.component";
+import {BoolChartComponent} from "./components/charts/boolchart.component";
+import {EnuChartComponent} from "./components/charts/enuchart.component";
 @NgModule({
   imports: [
       BrowserModule,
@@ -25,7 +27,9 @@ import {ChartComponent} from "./components/charts/chart.component";
       LoginComponent,
       OverviewComponent,
       DetailsComponent,
-      ChartComponent
+      LineChartComponent,
+      EnuChartComponent,
+      BoolChartComponent
   ],
   providers: [ DeviceService
   ],
