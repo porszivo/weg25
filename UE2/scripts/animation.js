@@ -69,4 +69,26 @@ function drawCam(id, src, min, max, current, values) {
 
 function drawShutter(id, src, min, max, current, values) {
   // TODO
+    var img = $("#image_" + id);
+    img.svg({
+        loadURL: '/images/roller_shutter.svg',
+        onLoad: function (svg) {
+            var root = svg.root();
+            $(root).attr('id', id).addClass('device-image').attr('width', img.css('width')).attr('height', img.css('height'));
+            if (current == 0) {
+                $('#path4559-2', root).hide();
+                $('#path4559-2-6', root).hide();
+                $('#path4559-2-5', root).hide();
+            } else if (current == 1) {
+                $('#path4559-2', root).show();
+                $('#path4559-2-6', root).hide();
+                $('#path4559-2-5', root).hide();
+            } else if (current == 2) {
+                $('#path4559-2', root).show();
+                $('#path4559-2-6', root).show();
+                $('#path4559-2-5', root).show();
+            }
+
+        }
+    });
 }
