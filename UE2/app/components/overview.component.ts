@@ -53,7 +53,11 @@ export class OverviewComponent implements OnInit {
     }
 
     drawSVG(device: Device): void {
-        device.draw_image(device.id,2,3,4,5,6);
+        /** id, src, min, max, current, values **/
+        for(var i = 0; i < device.control_units.length; i++) {
+            console.log(device.control_units[i]);
+            device.draw_image(device.id,null,null,null,device.control_units[i]['current'],device.control_units[i]['values']);
+        }
     }
 
 }

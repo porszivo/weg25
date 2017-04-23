@@ -23,7 +23,20 @@ function drawThermometer(id, src, min, max, current, values) {
 
 function drawBulb(id, src, min, max, current, values) {
     // TODO
-    console.log("bulb");
+    console.log(id + " " + current);
+    var img = $("#image_" + id);
+    img.svg({
+        loadURL: '/images/bulb.svg',
+        onLoad: function (svg) {
+            var root = $(svg.root());
+            root.attr('id', id).addClass('device-image').attr('width', img.css('width')).attr('height', img.css('height'));
+            if (current == 1 || current == true) {
+                root.attr('fill', '#ffa500');
+            } else {
+                root.attr('fill', 'black');
+            }
+        }
+    });
 }
 
 function drawCam(id, src, min, max, current, values) {
