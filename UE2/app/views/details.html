@@ -1,3 +1,32 @@
+<div role="navigation" aria-label="jumplinks">
+  <a href="#deviceheadline" class="accessibility">Zum Inhalt springen</a>
+</div>
+
+<header aria-labelledby="bannerheadline">
+  <a [routerLink]="['/overview']"><img class="title-image" src="../../images/big-logo-small.png" alt="BIG Smart Home logo"></a>
+
+  <h1 class="header-title" id="bannerheadline">
+    BIG Smart Home
+  </h1>
+  <nav aria-labelledby="navigationheadline">
+    <h2 class="accessibility" id="navigationheadline">Navigation</h2>
+    <ul class="navigation-list">
+      <li class="nav-items">
+        <ul>
+          <li>
+            <a [routerLink]="['/options']" class="button" accesskey="2">Optionen</a>
+          </li>
+          <li>
+            <a [routerLink]="['/login']" class="button" accesskey="1">Abmelden</a>
+          </li>
+        </ul>
+      </li>
+      <li class="overflow-icon">
+        <a href="#" class="button" accesskey="1">☰</a>
+      </li>
+    </ul>
+  </nav>
+</header>
 <div *ngIf="device" class="main-container">
   <aside class="sidebar" aria-labelledby="serverinfoheadline">
     <div class="server-info-container">
@@ -31,11 +60,11 @@
     <div class="details-holder">
 
       <!-- Steuerung für kontinuierliche Werte -->
-      <chart-comp *ngIf="cont" [control_units]="cont"></chart-comp>
+      <line-comp *ngIf="cont" [device]="device"></line-comp>
 
-      <chart-comp *ngIf="bool" [control_units]="bool"></chart-comp>
+      <bool-comp *ngIf="bool" [device]="device"></bool-comp>
 
-      <chart-comp *ngIf="enu" [control_units]="enu"></chart-comp>
+      <enu-comp *ngIf="enu" [device]="device"></enu-comp>
 
     </div>
 

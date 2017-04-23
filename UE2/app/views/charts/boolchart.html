@@ -1,0 +1,28 @@
+<div class="details-outer">
+    <div class="details-image-container">
+        <canvas baseChart
+                [data]="doughnutChartData"
+                [labels]="doughnutChartLabels"
+                [chartType]="doughnutChartType"></canvas>
+    </div>
+    <div class="details-data">
+        <label class="accessibility" for="details-log">Letzte Werteänderungen</label>
+        <textarea id="details-log" class="detail-logs" placeholder="Gerätelog" readonly rows="6" [(ngModel)]="detaillog" split-array></textarea>
+        <div class="details-settings">
+            <h3 class="details-headline">Ein-/Ausschalten</h3>
+
+            <form #f="ngForm" class="update-form" (ngSubmit)="submit(f.value)">
+
+                <label class="update-form-field" id="current-value">
+                    <span class="current-value">derzeit:  {{currentVal ? 'Aktiviert' : 'Deaktiviert'}}</span>
+                </label>
+
+                <label class="accessibility" for="new-value">Bitte gewünschten Wert auswählen.</label>
+                <input type="checkbox" id="new-value" class="update-checkbox-input form-input" checked
+                       name="new-value" ngModel >
+                <input type="submit" id="submit-value" class="update-form-field button" name="submit-value"
+                       value="Wert setzen">
+            </form>
+        </div>
+    </div>
+</div>

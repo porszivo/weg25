@@ -1,23 +1,22 @@
 import {Component, OnInit, Input} from "@angular/core";
+import {DeviceService} from "../../services/device.service";
+import {Device} from "../../model/device";
 
 @Component({
-    selector: 'chart-comp',
-    templateUrl: '../app/views/chart.comp.html'
+    selector: 'line-comp',
+    templateUrl: '../app/views/charts/linechart.html'
 })
 
-export class ChartComponent implements OnInit {
+export class LineChartComponent implements OnInit {
 
-    @Input() control_units: Object[];
-    date: string;
+    @Input() device: Device;
+    public control_units: any;
     currentVal: any = 0;
 
-    constructor(){
-
-    }
-
     ngOnInit(): void {
+        this.control_units = this.device['control_units'].find(ct => ct.type == 2);
+        this.currentVal = this.control_units['current'];
         this.addValue(this.control_units['current']);
-
     }
 
     public lineChartData:Array<any> = [
@@ -48,13 +47,9 @@ export class ChartComponent implements OnInit {
 
     public lineChartLegend:boolean = true;
 
-    /** TODO: Change for other types aswell
-     * based on control type, cont == line, enu == doughnut, bool == doughnut with 2 colors
-     * */
     public lineChartType:string = 'line';
 
     addValue(val: number): void {
-        console.log(val);
         let oldVal = this.currentVal;
         this.lineChartData[0]['data'].push(val);
         let dat = new Date().toLocaleString();
@@ -65,10 +60,11 @@ export class ChartComponent implements OnInit {
 
         /** workaround to refresh */
         this.lineChartData = this.lineChartData.slice();
-        this.lineChartLabels = this.lineChartLabels.slice();
         this.detaillog = this.detaillog.slice();
-        console.log(this.lineChartData);
-        console.log(this.lineChartLabels);
+
+        /** update device **/
+        this.control_units['current'] = val;
+
     }
 
     submit(val: number): void {
