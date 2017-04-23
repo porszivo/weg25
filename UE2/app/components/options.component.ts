@@ -38,8 +38,8 @@ export class OptionsComponent {
         });
     }
 
-    submit() {
-        this.router.navigate(['/options']);
+    submit(): void {
+        this.router.navigate(['/overview']);
     }
 
 }

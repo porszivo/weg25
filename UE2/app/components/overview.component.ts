@@ -16,7 +16,14 @@ export class OverviewComponent implements OnInit {
     constructor(private router: Router, private deviceService: DeviceService) {}
 
     getDevices(): void {
-        this.deviceService.getDevices().then(devices => this.devices = devices);
+        this.deviceService.getDevices().then(devices => {
+            this.devices = devices;
+            for(var device of devices) {
+                /** this is where the function is called **/
+                device.draw_image(1,2,3,4,5,6);
+            }
+        }
+    );
     }
 
     ngOnInit(): void {
