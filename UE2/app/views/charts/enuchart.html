@@ -8,7 +8,7 @@
     </div>
     <div class="details-data">
         <label class="accessibility" for="details-log">Letzte Werteänderungen</label>
-        <textarea id="details-log" class="detail-logs" placeholder="Gerätelog" readonly rows="6">6.3.2017 10:02:32: Ein -> Standby</textarea>
+        <textarea id="details-log" class="detail-logs" placeholder="Gerätelog" readonly rows="6" [(ngModel)]="detaillog" split-array></textarea>
         <div class="details-settings">
             <h3 class="details-headline">Gerätezustand einstellen</h3>
 

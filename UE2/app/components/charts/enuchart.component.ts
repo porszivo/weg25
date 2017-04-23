@@ -29,16 +29,13 @@ export class EnuChartComponent implements OnInit {
 
     addValue(val: number) {
 
-        console.log(val);
         let diff = Date.now() - this.lastTimestamp;
         let dat = new Date().toLocaleString();
-
         let oldVal = this.currentVal;
         this.polarAreaChartData[oldVal] = this.polarAreaChartData[oldVal] + (1 + diff)/60000;
 
-        console.log(this.polarAreaChartData);
         this.polarAreaChartData = this.polarAreaChartData.slice();
-        this.detaillog.push(dat + " " + oldVal + " -> " + this.polarAreaChartData[val] + "\n");
+        this.detaillog.push(dat + " " + this.polarAreaChartLabels[oldVal] + " -> " + this.polarAreaChartLabels[val] + "\n");
         this.detaillog = this.detaillog.slice();
         this.currentVal = val;
         this.currentLabel = this.polarAreaChartLabels[val];

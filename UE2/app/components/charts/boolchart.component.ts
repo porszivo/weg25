@@ -46,7 +46,6 @@ export class BoolChartComponent implements OnInit {
     }
 
     submit(val: any): void {
-        console.log(this.currentVal + " -> " + val['new-value']);
         if(val['new-value'] && val['new-value'] != this.currentVal) this.addValue(1);
         else if(!val['new-value'] && val['new-value'] != this.currentVal) this.addValue(0);
     }
