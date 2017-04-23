@@ -63,7 +63,7 @@
           <dl class="device-properties">
             <dt>Anzeigename</dt>
             <dd class="device-displayname" *ngIf="isFocusDevice(device)">
-              <input [(ngModel)]="device.display_name" placeholder="display_name" (keyup.enter)="uneditDevice(device)"/>
+              <input [(ngModel)]="device.display_name" placeholder="display_name" (keyup.enter)="uneditDevice()"/>
             </dd>
             <dd class="device-displayname" *ngIf="!isFocusDevice(device)">{{device.display_name}}</dd>
             <dt>Gerätetyp</dt>
@@ -71,8 +71,8 @@
             <dt>Gerätename</dt>
             <dd class="device-name">{{device.type_name}}</dd>
           </dl>
-          <div class="device-image-container">
-            <div class="device_image"></div>
+          <div class="device-image-container" >
+            <div id="image_{{device.id}}"></div>{{drawSVG(device)}}
           </div>
         </a>
         <ul class="device-actions">
