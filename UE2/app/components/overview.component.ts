@@ -17,13 +17,9 @@ export class OverviewComponent implements OnInit {
 
     getDevices(): void {
         this.deviceService.getDevices().then(devices => {
-            this.devices = devices;
-            for(var device of devices) {
-                /** this is where the function is called **/
-                device.draw_image(1,2,3,4,5,6);
+                this.devices = devices;
             }
-        }
-    );
+        );
     }
 
     ngOnInit(): void {
@@ -42,7 +38,7 @@ export class OverviewComponent implements OnInit {
         return this.focusDevice==device;
     }
 
-    uneditDevice(device: Device): void {
+    uneditDevice(): void {
         this.focusDevice = null;
     }
 
@@ -54,6 +50,10 @@ export class OverviewComponent implements OnInit {
         if(this.focusDevice == null) {
             this.router.navigate(['/detail', device.id]);
         }
+    }
+
+    drawSVG(device: Device): void {
+        device.draw_image(device.id,2,3,4,5,6);
     }
 
 }
