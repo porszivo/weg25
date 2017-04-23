@@ -32,6 +32,7 @@ function drawCam(id, src, min, max, current, values) {
     Dabei soll jedoch nicht nur einfach die Farbe der Elemente verändert werden, sondern es soll eine Kopie der zu verändernden Elemente erstellt
      und anschließend die aktuellen durch die angepassten Kopien ersetzt werden.
    */
+    console.log("cam");
 }
 
 function drawShutter(id, src, min, max, current, values) {
