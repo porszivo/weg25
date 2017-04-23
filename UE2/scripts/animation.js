@@ -45,7 +45,24 @@ function drawCam(id, src, min, max, current, values) {
     Dabei soll jedoch nicht nur einfach die Farbe der Elemente verändert werden, sondern es soll eine Kopie der zu verändernden Elemente erstellt
      und anschließend die aktuellen durch die angepassten Kopien ersetzt werden.
    */
-    console.log("cam");
+    console.log("webcam");
+    var img = $("#image_" + id);
+    img.svg({
+        loadURL: '/images/webcam.svg',
+        onLoad: function (svg) {
+            var root = svg.root();
+            $(root).attr('id', id).addClass('device-image').attr('width', img.css('width')).attr('height', img.css('height'));
+            var circ = $('#circle8', root);
+            var cloned = circ.clone();
+            if (current == 1 || current == true) {
+                cloned.css('fill', '#42a5f5');
+            } else {
+                cloned.css('fill', 'black');
+            }
+            circ.replaceWith(cloned);
+
+        }
+    });
 }
 
 function drawShutter(id, src, min, max, current, values) {
