@@ -17,13 +17,21 @@ function drawThermometer(id, src, min, max, current, values) {
    Passen Sie die Höhe des Temperaturstandes entsprechend dem aktuellen Wert an.
    Beachten Sie weiters, dass auch die Beschriftung des Thermometers (max, min Temperatur) angepasst werden soll.
    */
-    console.log("thermometer");
+    var img = $("#image_" + id);
+    img.svg({
+        loadURL: '/images/thermometer.svg',
+        onLoad: function (svg) {
+            var root = $(svg.root());
+            root.attr('id', id).addClass('device-image').attr('width', img.css('width')).attr('height', img.css('height'));
+            $('#text3819-3', root).text(max);
+            $('#text3819', root).text(min)
+            $('#title3855', root).text(current);
+        }
+    });
 }
 
 
 function drawBulb(id, src, min, max, current, values) {
-    // TODO
-    console.log(id + " " + current);
     var img = $("#image_" + id);
     img.svg({
         loadURL: '/images/bulb.svg',
@@ -40,12 +48,6 @@ function drawBulb(id, src, min, max, current, values) {
 }
 
 function drawCam(id, src, min, max, current, values) {
-  /* TODO
-    Verändern Sie die Darstellung der Webcam entsprechend den Vorgaben aus der Angabe.
-    Dabei soll jedoch nicht nur einfach die Farbe der Elemente verändert werden, sondern es soll eine Kopie der zu verändernden Elemente erstellt
-     und anschließend die aktuellen durch die angepassten Kopien ersetzt werden.
-   */
-    console.log("webcam");
     var img = $("#image_" + id);
     img.svg({
         loadURL: '/images/webcam.svg',
@@ -67,5 +69,4 @@ function drawCam(id, src, min, max, current, values) {
 
 function drawShutter(id, src, min, max, current, values) {
   // TODO
-    console.log("shutter");
 }
