@@ -26,7 +26,7 @@
 </header>
 <div class="main-container">
   <main aria-labelledby="formheadline">
-    <form class="form" (ngSubmit)="onSubmit()">
+    <form class="form">
       <h2 id="formheadline" class="options-headline">Passwort ändern</h2>
       <div class="form-row">
         <label class="form-label" for="old-password-input">
@@ -55,7 +55,7 @@
         <span id="password-mismatch-error" class="error-text">password mismatch</span>
       </div>
       <div class="form-row form-row-center">
-        <button id="save-changes-button" class="button button-submit" disabled>
+        <button id="save-changes-button" class="button button-submit" disabled (click)="submit()">
           Änderung speichern
         </button>
       </div>

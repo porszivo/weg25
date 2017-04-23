@@ -1,5 +1,6 @@
 import {Component} from "@angular/core";
 import {Router} from "@angular/router";
+declare var $:any;
 
 @Component({
     selector: 'device-details',
@@ -8,12 +9,10 @@ import {Router} from "@angular/router";
 
 export class OptionsComponent {
 
-    $:any;
-
     constructor(private router: Router){}
 
     ngAfterViewInit(){
-        this.$(document).ready(function(){
+        $(document).ready(function(){
             var password = <HTMLInputElement>document.getElementById("new-password-input")
                 , confirm_password = <HTMLInputElement>document.getElementById("repeat-password-input")
                 , error_mismatch = <HTMLInputElement>document.getElementById("password-mismatch-error")
@@ -39,7 +38,7 @@ export class OptionsComponent {
         });
     }
 
-    onSubmit() {
+    submit() {
         this.router.navigate(['/options']);
     }
 
