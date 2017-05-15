@@ -10,6 +10,8 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class DeviceService {
 
+    private devicesUrl = '';
+
     constructor(private parserService: DeviceParserService) {
     }
 
@@ -21,6 +23,7 @@ export class DeviceService {
          * Verwenden Sie das DeviceParserService um die via REST ausgelesenen Geräte umzuwandeln.
          * Das Service ist dabei bereits vollständig implementiert und kann wie unten demonstriert eingesetzt werden.
          */
+
         return Promise.resolve(DEVICES).then(devices => {
             for (let i = 0; i < devices.length; i++) {
                 devices[i] = this.parserService.parseDevice(devices[i]);

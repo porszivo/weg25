@@ -35,6 +35,35 @@ app.use(cors());
  *      Bei der Anlage neuer Geräte wird eine neue ID benötigt. Verwenden Sie dafür eine uuid (https://www.npmjs.com/package/uuid, Bibliothek ist bereits eingebunden).
  */
 
+// isLogedIn liefert true nach einem erfolgreichem Log-In
+//TODO implementieren Sie die Methode isLogedIn
+function isLogedIn() {
+    return true;
+}
+
+
+
+app.get('/overview', function (req, res) {
+    //wenn "use strict"; gebraucht "//" löschen
+    if (isLogedIn()) {
+        res.sendFile(_dirname + '/overview.html')
+    }
+});
+
+app.put('/device', function (req, res) {
+    //wenn "use strict"; gebraucht "//" löschen
+    if (isLogedIn()) {
+        res.send('Add a device')
+    }
+});
+
+app.delete('/device', function (req, res) {
+    //wenn "use strict"; gebraucht "//" löschen
+    if (isLogedIn()) {
+        res.send('Delete a device')
+    }
+});
+
 app.post("/updateCurrent", function (req, res) {
     "use strict";
     //TODO Vervollständigen Sie diese Funktion, welche den aktuellen Wert eines Gerätes ändern soll
@@ -43,12 +72,35 @@ app.post("/updateCurrent", function (req, res) {
      *      simulation.updatedDeviceValue(device, control_unit, Number(new_value));
      * Diese Funktion verändert gleichzeitig auch den aktuellen Wert des Gerätes, Sie müssen diese daher nur mit den korrekten Werten aufrufen.
      */
+    if (isLogedIn()) {
+        simulation.updatedDeviceValue(device, control_unit, Number(new_value));
+    }
 });
+
+app.logIn('/login', function (res, req) {
+    res.send('User log-in')
+});
+
+
+app.doLogout('/login', function (res, req) {
+    if (isLogedIn()) {
+        res.send('User log-out')
+    }
+});
+
+
+
+
 
 
 function readUser() {
     "use strict";
     //TODO Lesen Sie die Benutzerdaten aus dem login.config File ein.
+   /* var xml = new XMLHttpRequest();
+    xml.open('GET', 'login.config', false);
+    xml.send();
+    var xmlData = xml.responseXML;
+    document.write(xmlData);*/
 }
 
 function readDevices() {
@@ -59,6 +111,9 @@ function readDevices() {
      *      simulation.simulateSmartHome(devices.devices, refreshConnected);
      * Der zweite Parameter ist dabei eine callback-Funktion, welche zum Updaten aller verbundenen Clients dienen soll.
      */
+    if (isLogedIn()) {
+        simulation.simulateSmartHome(devices.device, refreshConnected());
+    }
 }
 
 
