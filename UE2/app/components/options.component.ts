@@ -39,6 +39,7 @@ export class OptionsComponent {
     }
 
     submit(): void {
+
         this.router.navigate(['/overview']);
     }
 

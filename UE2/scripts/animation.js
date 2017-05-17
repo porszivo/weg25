@@ -26,6 +26,7 @@ function drawThermometer(id, src, min, max, current, values) {
             $('#text3819-3', root).text(max);
             $('#text3819', root).text(min)
             $('#title3855', root).text(current);
+
         }
     });
 }

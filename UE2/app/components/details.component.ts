@@ -8,7 +8,9 @@ import {ControlUnit} from "../model/controlUnit";
 @Component({
     selector: 'device-details',
     templateUrl: '../app/views/details.html'
+
 })
+
 export class DetailsComponent implements OnInit {
 
     device: Device;

@@ -18,6 +18,8 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(cors());
 
+var device;
+
 //TODO Implementieren Sie hier Ihre REST-Schnittstelle
 /* Ermöglichen Sie wie in der Angabe beschrieben folgende Funktionen:
  *  Abrufen aller Geräte als Liste
@@ -35,33 +37,34 @@ app.use(cors());
  *      Bei der Anlage neuer Geräte wird eine neue ID benötigt. Verwenden Sie dafür eine uuid (https://www.npmjs.com/package/uuid, Bibliothek ist bereits eingebunden).
  */
 
-// isLogedIn liefert true nach einem erfolgreichem Log-In
-//TODO implementieren Sie die Methode isLogedIn
-function isLogedIn() {
-    return true;
-}
-
-
-
-app.get('/overview', function (req, res) {
-    //wenn "use strict"; gebraucht "//" löschen
-    if (isLogedIn()) {
-        res.sendFile(_dirname + '/overview.html')
-    }
+app.get('/allDevices', function (req, res) {
+    res.json(device);
 });
 
-app.put('/device', function (req, res) {
-    //wenn "use strict"; gebraucht "//" löschen
-    if (isLogedIn()) {
-        res.send('Add a device')
-    }
+app.get('/login', function (req, res) {
+    //fs.readFile( './resources/login.config', 'utf8', function (err, data) {
+        res.send('Angemeldet');
+    //});
 });
 
-app.delete('/device', function (req, res) {
-    //wenn "use strict"; gebraucht "//" löschen
-    if (isLogedIn()) {
-        res.send('Delete a device')
-    }
+app.get('/logout', function (req, res) {
+    res.send('Abgemeldet');
+});
+
+
+app.post('/addDevice', function (req, res) {
+
+});
+
+var id = 'a79acab4-e88b-11e6-bf01-fe55135034f3';
+
+app.delete('/deleteDevice/:id', function (req, res) {
+    fs.readFile('./resources/devices.json','utf8', function (err, data) {
+        data = JSON.parse( data );
+        delete data[id]; // wie mache ich das generisch?
+        console.log( data );
+        res.end( JSON.stringify(data));
+    });
 });
 
 app.post("/updateCurrent", function (req, res) {
@@ -72,35 +75,15 @@ app.post("/updateCurrent", function (req, res) {
      *      simulation.updatedDeviceValue(device, control_unit, Number(new_value));
      * Diese Funktion verändert gleichzeitig auch den aktuellen Wert des Gerätes, Sie müssen diese daher nur mit den korrekten Werten aufrufen.
      */
-    if (isLogedIn()) {
-        simulation.updatedDeviceValue(device, control_unit, Number(new_value));
-    }
 });
-
-app.logIn('/login', function (res, req) {
-    res.send('User log-in')
-});
-
-
-app.doLogout('/login', function (res, req) {
-    if (isLogedIn()) {
-        res.send('User log-out')
-    }
-});
-
-
-
-
-
 
 function readUser() {
     "use strict";
     //TODO Lesen Sie die Benutzerdaten aus dem login.config File ein.
-   /* var xml = new XMLHttpRequest();
-    xml.open('GET', 'login.config', false);
-    xml.send();
-    var xmlData = xml.responseXML;
-    document.write(xmlData);*/
+    /*fs.readFile('.resources/login.config','utf8',function (err,data) {
+        console.log(data);
+    })*/
+
 }
 
 function readDevices() {
@@ -111,9 +94,9 @@ function readDevices() {
      *      simulation.simulateSmartHome(devices.devices, refreshConnected);
      * Der zweite Parameter ist dabei eine callback-Funktion, welche zum Updaten aller verbundenen Clients dienen soll.
      */
-    if (isLogedIn()) {
-        simulation.simulateSmartHome(devices.device, refreshConnected());
-    }
+    device = JSON.parse(fs.readFileSync('./resources/devices.json'));
+
+
 }
 
 
