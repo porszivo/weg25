@@ -19,6 +19,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 var device;
+var user;
 
 //TODO Implementieren Sie hier Ihre REST-Schnittstelle
 /* Ermöglichen Sie wie in der Angabe beschrieben folgende Funktionen:
@@ -41,10 +42,18 @@ app.get('/allDevices', function (req, res) {
     res.json(device);
 });
 
-app.get('/login', function (req, res) {
-    //fs.readFile( './resources/login.config', 'utf8', function (err, data) {
-        res.send('Angemeldet');
-    //});
+app.post('/login', function (req, res) {
+    var username = req.body.username;
+    var password = req.body.password;
+    console.log(req.body.name);
+    console.log(user);
+    if(user.username === username && user.password === password) {
+        console.log("Klappt");
+        res.send(200);
+    } else {
+        console.log("Falsches Passwort");
+        res.send(401);
+    }
 });
 
 app.get('/logout', function (req, res) {
@@ -74,10 +83,10 @@ app.post("/updateCurrent", function (req, res) {
 
 function readUser() {
     "use strict";
-    //TODO Lesen Sie die Benutzerdaten aus dem login.config File ein.
-    /*fs.readFile('.resources/login.config','utf8',function (err,data) {
-        console.log(data);
-    })*/
+    fs.readFile('./resources/login.config','utf8',function (err,data) {
+        data = data.split(['\n']);
+        user = {'username': data[0].replace('username: ', '').replace('\r', ''), 'password': data[1].replace('password: ', '')}
+    })
 
 }
 
