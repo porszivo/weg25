@@ -64,20 +64,15 @@ export class DevicesComponent implements OnInit, AfterViewChecked {
      * Liest alle Geräte aus und initialisiert ein Flag zum Editierungs-Status dieses Gerätes
      */
     listDevices() {
-        /*this.deviceService.getDevices().then(devices => {
+        this.deviceService.getDevices().then(devices => {
             this.devices = devices;
+            console.log(devices);
             this.edit = new Array(this.devices.length);
             for (let i = 0; i < this.devices.length; i++) {
                 this.edit[i] = {id: this.devices[i].id, value: false};
             }
             this.device_num = devices.length;
-        });*/
-
-        this.deviceService.getDevices().subscribe(
-            devices => { this.devices = devices;
-            console.log(devices)},
-            error => this.errorMessage = <any>error
-        );
+        });
     }
 
 

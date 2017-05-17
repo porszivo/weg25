@@ -29,7 +29,7 @@ export class DeviceService {
         return this.http.get('http://localhost:8081/login');
     }
 
-    getDevices(): Observable<Device[]> {
+    getDevices(): Promise<Device[]> {
         //TODO Lesen Sie die Geräte über die REST-Schnittstelle aus
         /*
          * Verwenden Sie das DeviceParserService um die via REST ausgelesenen Geräte umzuwandeln.
@@ -43,13 +43,14 @@ export class DeviceService {
             return devices;
         });*/
        return this.http.get('http://localhost:8081/allDevices')
-           .map(this.extractData)
+           .toPromise()
+           .then(this.extractData)
            .catch(this.handleError)
     }
 
     private extractData(res: Response) {
         let body = res.json();
-        return body.data || { };
+        return body.devices || { };
     }
 
     private handleError (error: Response | any) {
@@ -66,9 +67,9 @@ export class DeviceService {
         return Observable.throw(errMsg);
     }
 
-    getDevice(id: string): Observable<Device> {
+    getDevice(id: string): Promise<Device> {
         return this.getDevices()
-            .map(devices => devices.find(device => device.id === id));
+            .then(devices => devices.find(device => device.id === id));
     }
 
 }
