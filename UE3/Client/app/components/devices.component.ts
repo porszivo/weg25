@@ -13,9 +13,9 @@ declare var $: any;
 })
 export class DevicesComponent implements OnInit, AfterViewChecked {
 
-    mode = 'Observable';
+    //mode = 'Observable';
     errorMessage: string;
-
+    selectedDevice: Device;
     devices: Device[];
     update: boolean = true;
     edit: { id: string, value: boolean }[];
@@ -64,7 +64,8 @@ export class DevicesComponent implements OnInit, AfterViewChecked {
      * Liest alle Geräte aus und initialisiert ein Flag zum Editierungs-Status dieses Gerätes
      */
     listDevices() {
-        this.deviceService.getDevices().then(devices => {
+        this.deviceService.getDevices().subscribe(
+            devices => {
             this.devices = devices;
             console.log(devices);
             this.edit = new Array(this.devices.length);
@@ -140,6 +141,12 @@ export class DevicesComponent implements OnInit, AfterViewChecked {
      */
     removeDevice(device: Device): void {
         //TODO Löschen Sie das angegebene Geräte über die REST-Schnittstelle
+        var temp = (this.deviceService.deleteDevice(device.id))
+            .then(()=> {
+            this.devices = this.devices.filter(d => d !== device);
+            if (this.selectedDevice === device){this.selectedDevice = null;}
+            })
+
     }
 
     /**

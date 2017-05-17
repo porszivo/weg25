@@ -3,7 +3,7 @@ import {Injectable} from '@angular/core';
 
 import {DEVICES} from '../resources/mock-device';
 import {DeviceParserService} from './device-parser.service';
-import {Http, Response} from '@angular/http';
+import {Http, Response, Headers} from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 import {Observable} from "rxjs/Observable";
@@ -15,6 +15,7 @@ import 'rxjs/add/operator/map';
 export class DeviceService {
 
     deviceUrl: string = 'http://localhost:8081/';
+    private headers = new Headers({'Content-Type': 'application/json'});
 
     constructor(private parserService: DeviceParserService, private http: Http) {
     }
@@ -22,31 +23,34 @@ export class DeviceService {
     //TODO Sie können dieses Service benutzen, um alle REST-Funktionen für die Smart-Devices zu implementieren
 
     getLogout(){
-        return this.http.get('http://localhost:8081/logout');
+        return this.http.get(this.deviceUrl + 'logout');
     }
 
     getLogin(){
         return this.http.get('http://localhost:8081/login');
     }
 
-    getDevices(): Promise<Device[]> {
+    getDevices(): Observable<Device[]> {
         //TODO Lesen Sie die Geräte über die REST-Schnittstelle aus
         /*
          * Verwenden Sie das DeviceParserService um die via REST ausgelesenen Geräte umzuwandeln.
          * Das Service ist dabei bereits vollständig implementiert und kann wie unten demonstriert eingesetzt werden.
          */
 
-       /* return Promise.resolve(DEVICES).then(devices => {
+
+
+        return this.http.get('http://localhost:8081/allDevices').map((res) => {
+
+            var devices = this.extractData(res);
             for (let i = 0; i < devices.length; i++) {
                 devices[i] = this.parserService.parseDevice(devices[i]);
             }
             return devices;
-        });*/
-       return this.http.get('http://localhost:8081/allDevices')
-           .toPromise()
-           .then(this.extractData)
-           .catch(this.handleError)
+
+        }).catch(this.handleError);
     }
+
+
 
     private extractData(res: Response) {
         let body = res.json();
@@ -67,9 +71,16 @@ export class DeviceService {
         return Observable.throw(errMsg);
     }
 
-    getDevice(id: string): Promise<Device> {
-        return this.getDevices()
-            .then(devices => devices.find(device => device.id === id));
+    getDevice(id: string) : Observable<Device>{
+        return this.getDevices().map(devices => devices.find(device => device.id === id))
+    }
+
+    deleteDevice(id: string){
+       return this.http.delete('http://localhost:8081/deleteDevice/' + id, {headers: this.headers})
+            .toPromise()
+            .then(() => null)
+            .catch(this.handleError);
+
     }
 
 }

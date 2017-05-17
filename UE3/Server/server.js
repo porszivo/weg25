@@ -51,20 +51,15 @@ app.get('/logout', function (req, res) {
     res.send('Abgemeldet');
 });
 
-
-app.post('/addDevice', function (req, res) {
-
+app.put('/addDevice', function (req, res) {
 });
 
-var id = 'a79acab4-e88b-11e6-bf01-fe55135034f3';
-
 app.delete('/deleteDevice/:id', function (req, res) {
-    fs.readFile('./resources/devices.json','utf8', function (err, data) {
-        data = JSON.parse( data );
-        delete data[id]; // wie mache ich das generisch?
-        console.log( data );
-        res.end( JSON.stringify(data));
+
+    device.devices = device.devices.filter(function(item) {
+        return item.id !== req.params.id;
     });
+    res.send(device);
 });
 
 app.post("/updateCurrent", function (req, res) {
