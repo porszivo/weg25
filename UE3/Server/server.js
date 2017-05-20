@@ -67,6 +67,7 @@ app.post('/login', function (req, res) {
 
 
 app.post("/options", function (req,res) {
+
     var oldPassword = req.body.password,
         newPassword = req.body.newPassword,
         repeatedPassword = req.body.repeatPassword;
@@ -74,9 +75,8 @@ app.post("/options", function (req,res) {
     if(password === oldPassword && newPassword === repeatedPassword){
         fs.writeFile('resources/login.config', "username: " + user.username + "\n" + "password: "+ newPassword);
         readUser();
-        res.send(["Passwort erfolgreich geändert"]);
+        res.send(["Passwort geändert"]);
     }
-
     else {
         res.send(["Altes Passwort falsch eingegeben!"])
     }
@@ -163,7 +163,6 @@ function createNewDevice(newDevice) {
     }
 
     console.log(addDevice);
-
     device.devices.push(addDevice[0]);
 }
 
@@ -191,7 +190,6 @@ function readDevices() {
     device = JSON.parse(fs.readFileSync('./resources/devices.json'));
 }
 
-
 function refreshConnected() {
     "use strict";
     //TODO Übermitteln Sie jedem verbundenen Client die aktuellen Gerätedaten über das Websocket
@@ -203,7 +201,6 @@ function refreshConnected() {
      * Bitte beachten Sie, dass diese Funktion von der Simulation genutzt wird um periodisch die simulierten Daten an alle Clients zu übertragen.
      */
 }
-
 
 var server = app.listen(8081, function () {
     "use strict";

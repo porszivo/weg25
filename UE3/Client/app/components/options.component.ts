@@ -3,7 +3,6 @@ import {Headers, Http} from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import {NgForm} from '@angular/forms';
 
-
 @Component({
     moduleId: module.id,
     selector: 'my-options',
@@ -38,6 +37,19 @@ export class OptionsComponent implements OnInit {
         if (!form) {
             return;
         }
+        var data = {
+            "oldPassword" : form.value["old-password"],
+            "newPassword" : form.value["new-password"],
+            "repeatPassword" : form.value["repeat-password"]
+        };
+        var body = JSON.stringify(data);
+        var head = new Headers ({'Content-Type' : 'application/json'});
+        this.http.post("http://localhost:8081/options", body, {headers: head})
+            .toPromise()
+            .then(function (res) {
+                console.log(res.json());
+            })
+
         form.resetForm();
 
     }
