@@ -1,0 +1,33 @@
+{
+  "control_units": [
+    {
+      "id": "Kontinuierlicher Wert",
+      "name": "Temperatur einstellen",
+      "type": "continuous",
+      "min": -10,
+      "max": 75,
+      "current": 27.4,
+      "primary": true
+    },
+    {
+      "id": "Ein/Ausschalter",
+      "name": "Ein-/Ausschalten",
+      "type": "boolean",
+      "values": [
+        ""
+      ],
+      "current": 0,
+      "primary": false
+    },
+    {
+      "id": "Diskrete Werte",
+      "name": "Rollladenstand",
+      "type": "enum",
+      "values": [
+        ""
+      ],
+      "current": 1,
+      "primary": true
+    }
+  ]
+}

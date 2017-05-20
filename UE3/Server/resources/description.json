@@ -1,0 +1,33 @@
+{
+  "model": [{
+    "name": "Beleuchtung",
+    "description": "Genauere Informationen zu diesem Beleuchtungselement",
+    "image": "images/bulb.svg",
+    "image_alt": "Glühbirne als Indikator für Aktivierung"
+  },
+  {
+    "name": "Heizkörperthermostat",
+    "description": "Genauere Informationen zu diesem Thermostat",
+    "image": "images/thermometer.svg",
+    "image_alt": "Thermometer zur Temperaturanzeige"
+  },
+  {
+    "name": "Überwachungskamera",
+    "description": "Genauere Informationen zu dieser Webcam",
+    "image": "images/thermometer.svg",
+    "image_alt": "Thermometer zur Temperaturanzeige"
+  },
+    {
+      "name": "Rollladen",
+      "description": "Genauere Informationen zu diesem Rollladen",
+      "image": "images/roller_shutter.svg",
+      "image_alt": "Rollladenbild als Indikator für Öffnungszustand"
+  },
+    {
+      "name": "Webcam",
+      "description": "Genauere Informationen zu dieser Webcam",
+      "image": "images/webcam.svg",
+      "image_alt": "Webcam als Indikator für Aktivierung"
+    }
+  ]
+}

@@ -21,7 +21,6 @@ export class DeviceService {
 
     constructor(private parserService: DeviceParserService, private http: Http, private authService: AuthService) {
         this.headers.set('Content-type', 'application/json');
-        this.headers.set('Token', this.authService.token)
     }
 
     getLogout(){
@@ -39,8 +38,7 @@ export class DeviceService {
          * Verwenden Sie das DeviceParserService um die via REST ausgelesenen Geräte umzuwandeln.
          * Das Service ist dabei bereits vollständig implementiert und kann wie unten demonstriert eingesetzt werden.
          */
-        console.log(localStorage);
-        this.headers.set('Authentication', '1234');
+        this.headers.set('Token', this.authService.token);
         this.opt = new RequestOptions({headers: this.headers});
         return this.http.get('http://localhost:8081/allDevices', this.opt).map((res) => {
 
@@ -56,6 +54,7 @@ export class DeviceService {
 
 
     private extractData(res: Response) {
+        console.log("Call?" + res);
         let body = res.json();
         return body.devices || { };
     }
@@ -69,7 +68,6 @@ export class DeviceService {
         } else {
             errMsg = error.message ? error.message : error.toString();
         }
-        console.error(errMsg);
         return Observable.throw(errMsg);
     }
 
@@ -85,16 +83,14 @@ export class DeviceService {
 
     }
 
-    createDevice(value: any) {
+    createDevice(value: any): Observable<Device> {
 
-        let body = JSON.stringify(value);
+        console.log(value);
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
 
-        this.http.post(this.deviceUrl + 'addDevice', body, options)
-            .map((response: Response) => {
-                return response;
-            })
+        return this.http.post(this.deviceUrl + 'addDevice', value, options)
+            .map(this.extractData)
             .catch(this.handleError);
     }
 

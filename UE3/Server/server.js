@@ -18,6 +18,8 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(cors());
 
+var description = JSON.parse(fs.readFileSync('./resources/description.json'));
+var control_units = JSON.parse(fs.readFileSync('./resources/control_units.json'));
 var device;
 var user;
 var password;
@@ -42,15 +44,16 @@ var jsonDate = new Date().toJSON();
  */
 
 app.get('/allDevices', function (req, res) {
-    var token = req.headers.token;
-    console.log(decode);
-    if(token) {
-        var decode = jwt.verify(token, 'SECRET-MESSAGE');
-        if(decode.username === user.username) {
-            res.json(device);
-        }
-    }
-    res.send(401);
+    // var token = req.headers.token;
+    // if(token) {
+    //     var decode = jwt.verify(token, 'SECRET-MESSAGE');
+    //     if(decode.username === user.username) {
+    //
+    //     }
+    // }
+    // res.send(401);
+    console.log(device);
+    res.json(device);
 });
 
 app.post('/login', function (req, res) {
@@ -73,7 +76,8 @@ app.post("/options", function (req,res) {
         repeatedPassword = req.body.repeatPassword;
 
     if(password === oldPassword && newPassword === repeatedPassword){
-        fs.writeFile('resources/login.config', "username: " + user + "\n" + "password: "+ newPassword);
+        fs.writeFile('resources/login.config', "username: " + user.username + "\n" + "password: "+ newPassword);
+        readUser();
         res.send(["Passwort erfolgreich geändert"]);
     }
 
@@ -93,8 +97,9 @@ app.get('/logout', function (req, res) {
 });
 
 app.post('/addDevice', function (req, res) {
-    console.log(req.params);
-    res.send(200);
+    var new_device = req.body;
+    createNewDevice(new_device);
+    res.send(device);
 });
 
 app.delete('/deleteDevice/:id', function (req, res) {
@@ -114,6 +119,44 @@ app.post("/updateCurrent", function (req, res) {
      * Diese Funktion verändert gleichzeitig auch den aktuellen Wert des Gerätes, Sie müssen diese daher nur mit den korrekten Werten aufrufen.
      */
 });
+
+function createNewDevice(newDevice) {
+
+    var des = description.model.filter(function(item) {
+        return item.name === newDevice['type-input'];
+    });
+
+    var ctu = control_units.control_units.filter(function(item) {
+        return item.id === newDevice['elementtype-input'];
+    });
+
+    var addDevice = [{
+        "id": Date.now(), // Create a random ID
+        "description": des[0].description, //
+        "display_name": newDevice.displayname,
+        "type": newDevice['type-input'],
+        "image": des[0].image,
+        "image_alt": des[0].image_alt,
+        "control_units": ctu[0]
+    }];
+
+    if(addDevice[0].control_units.type === "enum") {
+        var split = newDevice['discrete-values'].split(',');
+        var val = [];
+        for(var i = 0; i < split.length; i++) {
+            val.push(split[i].trim());
+        }
+        addDevice[0].control_units.values = val;
+    }
+
+    if(addDevice[0].control_units.type === "continuous") {
+        addDevice[0].control_units.min = newDevice['minimum-value'];
+        addDevice[0].control_units.max = newDevice['maximum-value'];
+    }
+
+    device.devices.push(addDevice[0]);
+    console.log(device);
+}
 
 function createToken(user) {
     return token = jwt.sign({ username: user.username }, 'SECRET-MESSAGE');

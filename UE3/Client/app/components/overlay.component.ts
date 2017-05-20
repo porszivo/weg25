@@ -30,7 +30,7 @@ export class OverlayComponent implements OnInit {
 
   ngOnInit(): void {
     this.device_types = ["Beleuchtung", "Heizkörperthermostat", "Rollladen", "Überwachungskamera", "Webcam"]
-    this.controlUnit_types = ["Ein/Auschalter", "Diskrete Werte", "Kontinuierlicher Wert"];
+    this.controlUnit_types = ["Ein/Ausschalter", "Diskrete Werte", "Kontinuierlicher Wert"];
     this.selected_type = this.device_types[0];
     this.controlUnitType_selected = this.controlUnit_types[0];
   }
@@ -46,7 +46,11 @@ export class OverlayComponent implements OnInit {
    * @param form
    */
   onSubmit(form: NgForm): void {
-    this.deviceService.createDevice(form.value);
+    this.deviceService.createDevice(form.value)
+        .subscribe(
+            response => console.log(response),
+            error => this.addError = true
+        );
     form.reset();
     this.overviewComponent.closeAddDeviceWindow();
   }
