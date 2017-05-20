@@ -20,6 +20,9 @@ app.use(cors());
 
 var device;
 var user;
+var password;
+var failedLog = 0;
+var jsonDate = new Date().toJSON();
 
 //TODO Implementieren Sie hier Ihre REST-Schnittstelle
 /* Ermöglichen Sie wie in der Angabe beschrieben folgende Funktionen:
@@ -57,9 +60,32 @@ app.post('/login', function (req, res) {
     if(user.username === username && user.password === password) {
         res.json(createToken(user));
     } else {
+        failedLog++;
         res.send(200);
     }
 
+});
+
+
+app.post("/options", function (req,res) {
+    var oldPassword = req.body.password,
+        newPassword = req.body.newPassword,
+        repeatedPassword = req.body.repeatPassword;
+
+    if(password === oldPassword && newPassword === repeatedPassword){
+        fs.writeFile('resources/login.config', "username: " + user + "\n" + "password: "+ newPassword);
+        res.send(["Passwort erfolgreich geändert"]);
+    }
+
+    else {
+        res.send(["Altes Passwort falsch eingegeben!"])
+    }
+
+});
+
+app.get("/failedLog", function (req, res) {
+    res.write(JSON.stringify({failed_logins: failedLog, jsonDate : jsonDate}));
+    res.end();
 });
 
 app.get('/logout', function (req, res) {
