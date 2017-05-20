@@ -44,15 +44,12 @@ var jsonDate = new Date().toJSON();
  */
 
 app.get('/allDevices', function (req, res) {
-    // var token = req.headers.token;
-    // if(token) {
-    //     var decode = jwt.verify(token, 'SECRET-MESSAGE');
-    //     if(decode.username === user.username) {
-    //
-    //     }
-    // }
-    // res.send(401);
-    res.json(device);
+    var token = req.headers.token;
+    if(token && checkAuthorization(token)) {
+        res.json(device);
+    } else {
+        res.status(401);
+    }
 });
 
 app.post('/login', function (req, res) {
@@ -118,6 +115,15 @@ app.post("/updateCurrent", function (req, res) {
      * Diese Funktion verändert gleichzeitig auch den aktuellen Wert des Gerätes, Sie müssen diese daher nur mit den korrekten Werten aufrufen.
      */
 });
+
+function checkAuthorization(token) {
+    if(token) {
+        var decode = jwt.verify(token, 'SECRET-MESSAGE');
+        return decode.username === user.username;
+    } else {
+        return false;
+    }
+}
 
 function createNewDevice(newDevice) {
 
