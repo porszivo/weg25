@@ -52,7 +52,6 @@ app.get('/allDevices', function (req, res) {
     //     }
     // }
     // res.send(401);
-    console.log(device);
     res.json(device);
 });
 
@@ -135,10 +134,13 @@ function createNewDevice(newDevice) {
         "description": des[0].description, //
         "display_name": newDevice.displayname,
         "type": newDevice['type-input'],
+        "type_name": newDevice['typename'],
         "image": des[0].image,
         "image_alt": des[0].image_alt,
-        "control_units": ctu[0]
+        "control_units": []
     }];
+
+    addDevice[0].control_units.push(ctu[0]);
 
     if(addDevice[0].control_units.type === "enum") {
         var split = newDevice['discrete-values'].split(',');
@@ -154,8 +156,9 @@ function createNewDevice(newDevice) {
         addDevice[0].control_units.max = newDevice['maximum-value'];
     }
 
+    console.log(addDevice);
+
     device.devices.push(addDevice[0]);
-    console.log(device);
 }
 
 function createToken(user) {
