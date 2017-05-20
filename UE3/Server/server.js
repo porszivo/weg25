@@ -22,7 +22,6 @@ var description = JSON.parse(fs.readFileSync('./resources/description.json'));
 var control_units = JSON.parse(fs.readFileSync('./resources/control_units.json'));
 var device;
 var user;
-var password;
 var failedLog = 0;
 var jsonDate = new Date().toJSON();
 
@@ -68,11 +67,11 @@ app.post('/login', function (req, res) {
 
 app.post("/options", function (req,res) {
 
-    var oldPassword = req.body.password,
+    var oldPassword = req.body.oldPassword,
         newPassword = req.body.newPassword,
         repeatedPassword = req.body.repeatPassword;
 
-    if(password === oldPassword && newPassword === repeatedPassword){
+    if(user.password === oldPassword && newPassword === repeatedPassword){
         fs.writeFile('resources/login.config', "username: " + user.username + "\n" + "password: "+ newPassword);
         readUser();
         res.send(["Passwort geändert"]);
