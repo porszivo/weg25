@@ -23,7 +23,8 @@ export class AuthService {
 
         return this.http.post('http://localhost:8081/login', body, options)
             .map((response: Response) => {
-                let token = response.json && response.json().token;
+            console.log(response);
+                let token = response.json();
                 if(token) {
                     this.token = token;
                     localStorage.setItem('currentUser', JSON.stringify({ username: username, token: token}));

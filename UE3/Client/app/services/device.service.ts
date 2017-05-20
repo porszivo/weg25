@@ -3,27 +3,30 @@ import {Injectable} from '@angular/core';
 
 import {DEVICES} from '../resources/mock-device';
 import {DeviceParserService} from './device-parser.service';
-import {Http, Response, Headers} from '@angular/http';
+import {Http, Response, Headers, RequestOptions} from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 import {Observable} from "rxjs/Observable";
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
+import {AuthService} from "./auth.service";
 
 
 @Injectable()
 export class DeviceService {
 
     deviceUrl: string = 'http://localhost:8081/';
-    private headers = new Headers({'Content-Type': 'application/json'});
+    headers: Headers = new Headers;
+    opt: RequestOptions;
 
-    constructor(private parserService: DeviceParserService, private http: Http) {
+    constructor(private parserService: DeviceParserService, private http: Http, private authService: AuthService) {
+        this.headers.set('Content-type', 'application/json');
+        this.headers.set('Token', this.authService.token)
     }
 
-    //TODO Sie können dieses Service benutzen, um alle REST-Funktionen für die Smart-Devices zu implementieren
-
     getLogout(){
-        return this.http.get(this.deviceUrl + 'logout');
+        this.authService.token = null;
+        localStorage.removeItem('currentUser');
     }
 
     getLogin(){
@@ -36,10 +39,10 @@ export class DeviceService {
          * Verwenden Sie das DeviceParserService um die via REST ausgelesenen Geräte umzuwandeln.
          * Das Service ist dabei bereits vollständig implementiert und kann wie unten demonstriert eingesetzt werden.
          */
-
-
-
-        return this.http.get('http://localhost:8081/allDevices').map((res) => {
+        console.log(localStorage);
+        this.headers.set('Authentication', '1234');
+        this.opt = new RequestOptions({headers: this.headers});
+        return this.http.get('http://localhost:8081/allDevices', this.opt).map((res) => {
 
             var devices = this.extractData(res);
             for (let i = 0; i < devices.length; i++) {
@@ -75,11 +78,25 @@ export class DeviceService {
     }
 
     deleteDevice(id: string){
-       return this.http.delete('http://localhost:8081/deleteDevice/' + id, {headers: this.headers})
+       return this.http.delete('http://localhost:8081/deleteDevice/' + id, new RequestOptions({headers: this.headers}))
             .toPromise()
             .then(() => null)
             .catch(this.handleError);
 
     }
+
+    createDevice(value: any) {
+
+        let body = JSON.stringify(value);
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+
+        this.http.post(this.deviceUrl + 'addDevice', body, options)
+            .map((response: Response) => {
+                return response;
+            })
+            .catch(this.handleError);
+    }
+
 
 }

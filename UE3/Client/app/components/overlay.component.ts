@@ -46,11 +46,9 @@ export class OverlayComponent implements OnInit {
    * @param form
    */
   onSubmit(form: NgForm): void {
+    this.deviceService.createDevice(form.value);
     form.reset();
     this.overviewComponent.closeAddDeviceWindow();
-
-    //TODO Lesen Sie Daten aus der Form aus und übertragen Sie diese an Ihre REST-Schnittstelle
-
   }
 
   isSelected(type: string): boolean {

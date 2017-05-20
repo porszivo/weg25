@@ -20,11 +20,15 @@ export class LoginComponent {
         this.authService.login(form.value.username, form.value.password)
             .subscribe(result => {
                 if(result) {
+                    this.loginError = false;
+                    console.log(localStorage.getItem('currentUser'));
                     this.router.navigate(['/overview']);
                 } else {
                     this.loginError = true;
+                    this.router.navigate(['/login']);
                 }
-            });
+            },
+            error => this.loginError = true);
 
     }
 }

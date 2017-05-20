@@ -5,7 +5,6 @@ import {error} from "util";
 
 declare var $: any;
 
-
 @Component({
     moduleId: module.id,
     selector: 'my-devices',
@@ -59,7 +58,6 @@ export class DevicesComponent implements OnInit, AfterViewChecked {
         }
     }
 
-
     /**
      * Liest alle Geräte aus und initialisiert ein Flag zum Editierungs-Status dieses Gerätes
      */
@@ -75,8 +73,6 @@ export class DevicesComponent implements OnInit, AfterViewChecked {
             this.device_num = devices.length;
         });
     }
-
-
 
     /**
      * Liest aus ob ein Gerät derzeit bearbeitet wird

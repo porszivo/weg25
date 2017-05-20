@@ -2,6 +2,7 @@ import {Component, OnInit, TemplateRef} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router'
 import {OptionsComponent} from "./options.component";
 import {LoginComponent} from "./login.component";
+import {AuthService} from "../services/auth.service";
 
 @Component({
   moduleId: module.id,
@@ -11,7 +12,7 @@ import {LoginComponent} from "./login.component";
 export class NavigationComponent {
 
 
-  constructor(private router: Router, private route: ActivatedRoute) {
+  constructor(private router: Router, private route: ActivatedRoute, private authService: AuthService) {
   };
 
   isOptionsShown(): boolean {
@@ -33,7 +34,7 @@ export class NavigationComponent {
   }
 
   doLogout(): void {
-    //TODO Loggen Sie den Benutzer über die REST-Schnittstelle aus
+    this.authService.logout();
     this.router.navigate(["/login"]);
   }
 

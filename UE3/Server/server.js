@@ -39,28 +39,36 @@ var user;
  */
 
 app.get('/allDevices', function (req, res) {
-    res.json(device);
+    var token = req.headers.token;
+    console.log(decode);
+    if(token) {
+        var decode = jwt.verify(token, 'SECRET-MESSAGE');
+        if(decode.username === user.username) {
+            res.json(device);
+        }
+    }
+    res.send(401);
 });
 
 app.post('/login', function (req, res) {
     var username = req.body.username;
     var password = req.body.password;
-    console.log(req.body.name);
-    console.log(user);
+
     if(user.username === username && user.password === password) {
-        console.log("Klappt");
-        res.send(200);
+        res.json(createToken(user));
     } else {
-        console.log("Falsches Passwort");
-        res.send(401);
+        res.send(200);
     }
+
 });
 
 app.get('/logout', function (req, res) {
     res.send('Abgemeldet');
 });
 
-app.put('/addDevice', function (req, res) {
+app.post('/addDevice', function (req, res) {
+    console.log(req.params);
+    res.send(200);
 });
 
 app.delete('/deleteDevice/:id', function (req, res) {
@@ -81,6 +89,10 @@ app.post("/updateCurrent", function (req, res) {
      */
 });
 
+function createToken(user) {
+    return token = jwt.sign({ username: user.username }, 'SECRET-MESSAGE');
+}
+
 function readUser() {
     "use strict";
     fs.readFile('./resources/login.config','utf8',function (err,data) {
@@ -99,8 +111,6 @@ function readDevices() {
      * Der zweite Parameter ist dabei eine callback-Funktion, welche zum Updaten aller verbundenen Clients dienen soll.
      */
     device = JSON.parse(fs.readFileSync('./resources/devices.json'));
-
-
 }
 
 
