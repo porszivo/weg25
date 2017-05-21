@@ -72,24 +72,32 @@ app.post('/login', function (req, res) {
 
 app.post("/options", function (req,res) {
 
-    var oldPassword = req.body.oldPassword,
-        newPassword = req.body.newPassword,
-        repeatedPassword = req.body.repeatPassword;
-
-    if(user.password === oldPassword && newPassword === repeatedPassword){
-        fs.writeFile('resources/login.config', "username: " + user.username + "\n" + "password: "+ newPassword);
-        readUser();
-        res.send(["Passwort geändert"]);
+    var oldPassword = req.body.oldPassword;
+    var newPassword = req.body.newPassword;
+    var repeatedPassword = req.body.repeatPassword;
+    var token = req.headers.token;
+    if(checkAuthorization(token)) {
+        if (user.password === oldPassword && newPassword === repeatedPassword) {
+            fs.writeFile('resources/login.config', "username: " + user.username + "\n" + "password: " + newPassword);
+            readUser();
+            res.send(["Passwort geändert"]);
+        }
+        else {
+            res.send(["Altes Passwort falsch oder neues Passwort und wiederholtes Passwort stimmen nicht überein!"])
+        }
+    } else {
+        res.status(401);
     }
-    else {
-        res.send(["Altes Passwort falsch eingegeben!"])
-    }
-
 });
 
-app.get("/failedLog", function (req, res) {
-    res.write(JSON.stringify({failed_logins: failedLog, jsonDate : jsonDate}));
-    res.end();
+app.get("/getServerstatus", function (req, res) {
+    var token = req.headers.token;
+    if(checkAuthorization(token)) {
+        res.write(JSON.stringify({failed_logins: failedLog, jsonDate: jsonDate}));
+        res.end();
+    } else {
+        res.status(401);
+    }
 });
 
 app.get('/logout', function (req, res) {
@@ -260,8 +268,6 @@ function refreshConnected() {
      *
      * Bitte beachten Sie, dass diese Funktion von der Simulation genutzt wird um periodisch die simulierten Daten an alle Clients zu übertragen.
      */
-
-
 }
 
 var server = app.listen(8081, function () {
