@@ -17,10 +17,12 @@ export class DeviceService {
 
     deviceUrl: string = 'http://localhost:8081/';
     headers: Headers = new Headers;
-    opt: RequestOptions;
+    options: RequestOptions;
 
     constructor(private parserService: DeviceParserService, private http: Http, private authService: AuthService) {
         this.headers.set('Content-type', 'application/json');
+        this.headers.set('token', this.authService.token);
+        this.options = new RequestOptions({ headers: this.headers });
     }
 
     getLogout(){
@@ -36,10 +38,9 @@ export class DeviceService {
         /*
          * Verwenden Sie das DeviceParserService um die via REST ausgelesenen Geräte umzuwandeln.
          * Das Service ist dabei bereits vollständig implementiert und kann wie unten demonstriert eingesetzt werden.
-         */
-        this.headers.set('Token', this.authService.token);
-        this.opt = new RequestOptions({headers: this.headers});
-        return this.http.get('http://localhost:8081/allDevices', this.opt).map((res) => {
+        */
+
+        return this.http.get('http://localhost:8081/allDevices', this.options).map((res) => {
 
             var devices = this.extractData(res);
             for (let i = 0; i < devices.length; i++) {
@@ -72,7 +73,7 @@ export class DeviceService {
     }
 
     deleteDevice(id: string){
-       return this.http.delete('http://localhost:8081/deleteDevice/' + id, new RequestOptions({headers: this.headers}))
+       return this.http.delete('http://localhost:8081/deleteDevice/' + id, this.options)
             .toPromise()
             .then(() => null)
             .catch(this.handleError);
@@ -80,21 +81,13 @@ export class DeviceService {
     }
 
     createDevice(value: any): Observable<Device> {
-
-        let headers = new Headers({ 'Content-Type': 'application/json' });
-        let options = new RequestOptions({ headers: headers });
-
-        return this.http.post(this.deviceUrl + 'addDevice', value, options)
+        return this.http.post(this.deviceUrl + 'addDevice', value, this.options)
             .map(this.extractData)
             .catch(this.handleError);
     }
 
     editDevice(device: Device) {
-        let headers = this.headers;
-        this.headers.set('token', this.authService.token);
-        let options = new RequestOptions({ headers: headers });
-
-        return this.http.post(this.deviceUrl + 'editDevice', device, options)
+        return this.http.post(this.deviceUrl + 'editDevice', device, this.options)
             .map(this.extractData)
             .catch(this.handleError);
     }

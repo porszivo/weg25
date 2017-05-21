@@ -98,16 +98,25 @@ app.get('/logout', function (req, res) {
 
 app.post('/addDevice', function (req, res) {
     var new_device = req.body;
-    createNewDevice(new_device);
-    res.send(device);
+    var token = req.headers.token;
+    if(checkAuthorization(token)) {
+        createNewDevice(new_device);
+        res.send(device);
+    } else {
+        res.status(401);
+    }
 });
 
 app.delete('/deleteDevice/:id', function (req, res) {
-
-    device.devices = device.devices.filter(function(item) {
-        return item.id !== req.params.id;
-    });
-    res.send(device);
+    var token = req.headers.token;
+    if(checkAuthorization(token)) {
+        device.devices = device.devices.filter(function(item) {
+            return item.id !== req.params.id;
+        });
+        res.send(device);
+    } else {
+        res.status(401);
+    }
 });
 
 app.post("/updateCurrent", function (req, res) {
@@ -187,7 +196,7 @@ function createNewDevice(newDevice) {
     });
 
     var addDevice = [{
-        "id": Date.now(), // Create a random ID
+        "id": Date.now().toString(), // Create a random ID
         "description": des[0].description, //
         "display_name": newDevice.displayname,
         "type": newDevice['type-input'],
@@ -214,6 +223,7 @@ function createNewDevice(newDevice) {
     }
 
     device.devices.push(addDevice[0]);
+    console.log(device.devices);
 }
 
 function createToken(user) {
