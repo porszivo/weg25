@@ -91,7 +91,6 @@ app.post("/options", function (req,res) {
     } else {
         res.status(401);
     }
-    console.log(user);
 });
 
 app.get("/getServerstatus", function (req, res) {
