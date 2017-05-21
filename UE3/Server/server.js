@@ -65,6 +65,7 @@ app.post('/login', function (req, res) {
         res.json(createToken(user));
     } else {
         failedLog++;
+        console.log(failedLog);
         res.send(200);
     }
 
@@ -76,24 +77,27 @@ app.post("/options", function (req,res) {
     var newPassword = req.body.newPassword;
     var repeatedPassword = req.body.repeatPassword;
     var token = req.headers.token;
+    console.log(req.body);
     if(checkAuthorization(token)) {
+        console.log(req.body);
         if (user.password === oldPassword && newPassword === repeatedPassword) {
             fs.writeFile('resources/login.config', "username: " + user.username + "\n" + "password: " + newPassword);
-            readUser();
-            res.send(["Passwort geändert"]);
+            user.password = newPassword;
+            res.send({error: false});
         }
         else {
-            res.send(["Altes Passwort falsch oder neues Passwort und wiederholtes Passwort stimmen nicht überein!"])
+            res.send({error: true});
         }
     } else {
         res.status(401);
     }
+    console.log(user);
 });
 
 app.get("/getServerstatus", function (req, res) {
     var token = req.headers.token;
     if(checkAuthorization(token)) {
-        res.write(JSON.stringify({failed_logins: failedLog, jsonDate: jsonDate}));
+        res.send(JSON.stringify({failed_logins: failedLog, jsonDate: jsonDate}));
         res.end();
     } else {
         res.status(401);
@@ -130,7 +134,6 @@ app.delete('/deleteDevice/:id', function (req, res) {
 app.post("/updateCurrent", function (req, res) {
     "use strict";
     var token = req.headers.token;
-    console.log(req.body.timestamp); // Timestamp für websocket
     if(checkAuthorization(token)) {
         var dev = device.devices.filter(function(item) { return req.body.id === item.id });
         var cu = dev[0]['control_units'].filter(function(item) { return item.type === req.body.type});
@@ -142,7 +145,6 @@ app.post("/updateCurrent", function (req, res) {
 
 app.post("/editDevice", function(req, res) {
    "use strict";
-   console.log(req.body);
    var id = req.body.id;
    var newname = req.body.display_name;
    var token = req.headers.token;
@@ -176,7 +178,6 @@ function changeVal(dev) {
  */
 app.post('/changeDeviceVal', function(req, res) {
     var token = req.headers.token;
-    console.log(req.body.timestamp); // Timestamp für websocket
     if(checkAuthorization(token)) {
         changeVal(req.body);
     } else {
@@ -231,7 +232,6 @@ function createNewDevice(newDevice) {
     }
 
     device.devices.push(addDevice[0]);
-    console.log(device.devices);
 }
 
 function createToken(user) {

@@ -31,6 +31,7 @@
                required class="form-input" minlength="8"
                maxlength="12" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,12}" ngModel>
       </div>
+      <div *ngIf="updateError" class="form-row form-row-center form-error" id="add-error">Falsches Passwort eingegeben!</div>
       <div class="form-row form-row-center">
         <input [disabled]="!(equalsPW(optionsForm) && optionsForm.form.valid)" type="submit" id="save-changes-button"
                class="button button-submit"

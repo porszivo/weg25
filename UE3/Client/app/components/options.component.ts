@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {Headers, Http} from '@angular/http';
+import {Headers, Http, RequestOptions} from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import {NgForm} from '@angular/forms';
+import {AuthService} from "../services/auth.service";
+import {Router} from "@angular/router";
 
 @Component({
     moduleId: module.id,
@@ -11,9 +13,16 @@ import {NgForm} from '@angular/forms';
 export class OptionsComponent implements OnInit {
 
     updateError: boolean;
+    deviceUrl: string = 'http://localhost:8081/';
+    headers: Headers = new Headers;
+    options: RequestOptions;
 
-    constructor(private http: Http) {
-    };
+    constructor(private http: Http, private authService: AuthService, private router: Router) {
+        this.headers.set('Content-type', 'application/json');
+        this.headers.set('token', this.authService.token);
+        this.options = new RequestOptions({headers: this.headers});
+    }
+
 
     ngOnInit(): void {
         this.updateError = false;
@@ -33,7 +42,6 @@ export class OptionsComponent implements OnInit {
      */
     onSubmit(form: NgForm): void {
 
-        //TODO Lesen Sie Daten aus der Form aus und übertragen Sie diese an Ihre REST-Schnittstelle
         if (!form) {
             return;
         }
@@ -43,12 +51,18 @@ export class OptionsComponent implements OnInit {
             "repeatPassword" : form.value["repeat-password"]
         };
         var body = JSON.stringify(data);
-        var head = new Headers ({'Content-Type' : 'application/json'});
-        this.http.post("http://localhost:8081/options", body, {headers: head})
+        this.http.post(this.deviceUrl + "options", body, this.options)
             .toPromise()
-            .then(function (res) {
-                console.log(res.json());
+            .then((response) => {
+                this.updateError = response.json().error;
+                if(!this.updateError) {
+                    form.resetForm();
+                    this.router.navigate(['/overview']);
+                }
             })
+            .catch(error => {
+                this.updateError = true;
+            });
 
         form.resetForm();
 
