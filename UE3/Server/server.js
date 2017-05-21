@@ -13,7 +13,6 @@ var bodyParser = require('body-parser');
 var jwt = require('jsonwebtoken');
 var cors = require('cors');
 var uuid = require('uuid');
-
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(cors());
@@ -24,6 +23,8 @@ var device;
 var user;
 var failedLog = 0;
 var jsonDate = new Date().toJSON();
+
+var wss = expressWs.getWss('/');
 
 //TODO Implementieren Sie hier Ihre REST-Schnittstelle
 /* Ermöglichen Sie wie in der Angabe beschrieben folgende Funktionen:
@@ -41,6 +42,11 @@ var jsonDate = new Date().toJSON();
  *      Vergessen Sie auch nicht, dass jeder Client mit aktiver Verbindung über alle Aktionen via Websocket zu informieren ist.
  *      Bei der Anlage neuer Geräte wird eine neue ID benötigt. Verwenden Sie dafür eine uuid (https://www.npmjs.com/package/uuid, Bibliothek ist bereits eingebunden).
  */
+
+app.ws('/', function (ws, req) {
+    ws.on('connection', function connection(ws, req) {
+    });
+});
 
 app.get('/allDevices', function (req, res) {
     var token = req.headers.token;
@@ -220,6 +226,8 @@ function refreshConnected() {
      *
      * Bitte beachten Sie, dass diese Funktion von der Simulation genutzt wird um periodisch die simulierten Daten an alle Clients zu übertragen.
      */
+
+
 }
 
 var server = app.listen(8081, function () {
