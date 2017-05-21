@@ -123,6 +123,21 @@ app.post("/updateCurrent", function (req, res) {
     }
 });
 
+app.post("/editDevice", function(req, res) {
+   "use strict";
+   console.log(req.body);
+   var id = req.body.id;
+   var newname = req.body.display_name;
+   var token = req.headers.token;
+   if(checkAuthorization(token)) {
+       var dev = device.devices.filter(function(item) { return id === item.id });
+       dev[0].display_name = newname;
+   } else {
+       res.status(401);
+   }
+
+});
+
 /**
  * @deprecated Don't use
  */
@@ -216,13 +231,13 @@ function readUser() {
 
 function readDevices() {
     "use strict";
-    //TODO Lesen Sie die Gerätedaten aus der devices.json Datei ein.
     /*
      * Damit die Simulation korrekt funktioniert, müssen Sie diese mit nachfolgender Funktion starten
      *      simulation.simulateSmartHome(devices.devices, refreshConnected);
      * Der zweite Parameter ist dabei eine callback-Funktion, welche zum Updaten aller verbundenen Clients dienen soll.
      */
     device = JSON.parse(fs.readFileSync('./resources/devices.json'));
+    //simulation.simulateSmartHome(device.devices, refreshConnected());
 }
 
 function refreshConnected() {

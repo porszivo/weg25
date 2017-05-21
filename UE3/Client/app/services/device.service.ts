@@ -33,7 +33,6 @@ export class DeviceService {
     }
 
     getDevices(): Observable<Device[]> {
-        //TODO Lesen Sie die Geräte über die REST-Schnittstelle aus
         /*
          * Verwenden Sie das DeviceParserService um die via REST ausgelesenen Geräte umzuwandeln.
          * Das Service ist dabei bereits vollständig implementiert und kann wie unten demonstriert eingesetzt werden.
@@ -51,10 +50,7 @@ export class DeviceService {
         }).catch(this.handleError);
     }
 
-
-
     private extractData(res: Response) {
-        console.log("Call?" + res);
         let body = res.json();
         return body.devices || { };
     }
@@ -85,11 +81,20 @@ export class DeviceService {
 
     createDevice(value: any): Observable<Device> {
 
-        console.log(value);
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
 
         return this.http.post(this.deviceUrl + 'addDevice', value, options)
+            .map(this.extractData)
+            .catch(this.handleError);
+    }
+
+    editDevice(device: Device) {
+        let headers = this.headers;
+        this.headers.set('token', this.authService.token);
+        let options = new RequestOptions({ headers: headers });
+
+        return this.http.post(this.deviceUrl + 'editDevice', device, options)
             .map(this.extractData)
             .catch(this.handleError);
     }

@@ -65,7 +65,6 @@ export class DevicesComponent implements OnInit, AfterViewChecked {
         this.deviceService.getDevices().subscribe(
             devices => {
             this.devices = devices;
-            console.log(devices);
             this.edit = new Array(this.devices.length);
             for (let i = 0; i < this.devices.length; i++) {
                 this.edit[i] = {id: this.devices[i].id, value: false};
@@ -128,7 +127,10 @@ export class DevicesComponent implements OnInit, AfterViewChecked {
      */
     finishEdit(device: Device): void {
         this.showLabel(device);
+        console.log(device);
         //TODO Lesen Sie den geänderten Anzeigenamen aus und speichern Sie diesen über die REST-Schnittstelle
+        var temp = (this.deviceService.editDevice(device))
+            .subscribe( devices => devices = this.devices);
     }
 
     /**
@@ -136,7 +138,6 @@ export class DevicesComponent implements OnInit, AfterViewChecked {
      * @param device
      */
     removeDevice(device: Device): void {
-        //TODO Löschen Sie das angegebene Geräte über die REST-Schnittstelle
         var temp = (this.deviceService.deleteDevice(device.id))
             .then(()=> {
             this.devices = this.devices.filter(d => d !== device);
