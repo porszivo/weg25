@@ -53,7 +53,7 @@ export class EnumDeviceDetailsComponent implements OnInit {
         }
 
         $.ajax({
-            url: 'http://localhost:8081/changeDeviceVal',
+            url: 'http://localhost:8081/updateCurrent',
             type: 'post',
             headers: {'token': item.token },
             contentType: "application/json; charset=utf-8",

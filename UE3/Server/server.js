@@ -57,16 +57,6 @@ app.get('/allDevices', function (req, res) {
     }
 });
 
-app.post('/changeDeviceVal', function(req, res) {
-    var token = req.headers.token;
-    console.log(req.body.timestamp); // Timestamp für websocket
-    if(checkAuthorization(token)) {
-        changeVal(req.body);
-    } else {
-        res.status(401);
-    }
-});
-
 app.post('/login', function (req, res) {
     var username = req.body.username;
     var password = req.body.password;
@@ -122,14 +112,20 @@ app.delete('/deleteDevice/:id', function (req, res) {
 
 app.post("/updateCurrent", function (req, res) {
     "use strict";
-    //TODO Vervollständigen Sie diese Funktion, welche den aktuellen Wert eines Gerätes ändern soll
-    /*
-     * Damit die Daten korrekt in die Simulation übernommen werden können, verwenden Sie bitte die nachfolgende Funktion.
-     *      simulation.updatedDeviceValue(device, control_unit, Number(new_value));
-     * Diese Funktion verändert gleichzeitig auch den aktuellen Wert des Gerätes, Sie müssen diese daher nur mit den korrekten Werten aufrufen.
-     */
+    var token = req.headers.token;
+    console.log(req.body.timestamp); // Timestamp für websocket
+    if(checkAuthorization(token)) {
+        var dev = device.devices.filter(function(item) { return req.body.id === item.id });
+        var cu = dev[0]['control_units'].filter(function(item) { return item.type === req.body.type});
+        simulation.updatedDeviceValue(dev[0], cu[0], Number(req.body.val));
+    } else {
+        res.status(401);
+    }
 });
 
+/**
+ * @deprecated Don't use
+ */
 function changeVal(dev) {
 
     var changeDevice = device.devices.filter(function(item) {
@@ -142,6 +138,19 @@ function changeVal(dev) {
 
     changeCT[0].current = dev.val;
 }
+
+/**
+ * @deprecated Don't use
+ */
+app.post('/changeDeviceVal', function(req, res) {
+    var token = req.headers.token;
+    console.log(req.body.timestamp); // Timestamp für websocket
+    if(checkAuthorization(token)) {
+        changeVal(req.body);
+    } else {
+        res.status(401);
+    }
+});
 
 function checkAuthorization(token) {
     if(token) {
