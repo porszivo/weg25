@@ -51,6 +51,16 @@ app.get('/allDevices', function (req, res) {
     }
 });
 
+app.post('/changeDeviceVal', function(req, res) {
+    var token = req.headers.token;
+    console.log(req.body.timestamp); // Timestamp für websocket
+    if(checkAuthorization(token)) {
+        changeVal(req.body);
+    } else {
+        res.status(401);
+    }
+});
+
 app.post('/login', function (req, res) {
     var username = req.body.username;
     var password = req.body.password;
@@ -63,7 +73,6 @@ app.post('/login', function (req, res) {
     }
 
 });
-
 
 app.post("/options", function (req,res) {
 
@@ -115,6 +124,19 @@ app.post("/updateCurrent", function (req, res) {
      */
 });
 
+function changeVal(dev) {
+
+    var changeDevice = device.devices.filter(function(item) {
+        return dev.id === item.id;
+    });
+
+    var changeCT = changeDevice[0]['control_units'].filter(function(item) {
+        return dev.type === item.type;
+    });
+
+    changeCT[0].current = dev.val;
+}
+
 function checkAuthorization(token) {
     if(token) {
         var decode = jwt.verify(token, 'SECRET-MESSAGE');
@@ -161,7 +183,6 @@ function createNewDevice(newDevice) {
         addDevice[0].control_units.max = newDevice['maximum-value'];
     }
 
-    console.log(addDevice);
     device.devices.push(addDevice[0]);
 }
 

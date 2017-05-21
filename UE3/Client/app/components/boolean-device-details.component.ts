@@ -3,6 +3,8 @@ import {Device} from "../model/device";
 import {ControlUnit} from "../model/controlUnit";
 import {DeviceService} from "../services/device.service";
 
+declare var $:any;
+
 @Component({
     moduleId: module.id,
     selector: 'boolean-details',
@@ -32,6 +34,27 @@ export class BooleanDeviceDetailsComponent implements OnInit {
      */
     onSubmit(): void {
         //TODO Lesen Sie die eingebenen Daten aus und verarbeiten Sie diese über die REST-Schnittstelle
+
+        let changeDevice = {
+            id: this.device.id,
+            val: this.new_value,
+            timestamp: new Date(),
+            type: "boolean"
+        };
+
+        for(var i = 0; i < localStorage.length; i++) {
+            var key = localStorage.key(i);
+            var item = JSON.parse(localStorage.getItem(key));
+        }
+
+        $.ajax({
+            url: 'http://localhost:8081/changeDeviceVal',
+            type: 'post',
+            headers: {'token': item.token },
+            contentType: "application/json; charset=utf-8",
+            dataType: 'json',
+            data: JSON.stringify(changeDevice)
+        });
 
         this.doughnutChartData[this.new_value ? 1 : 0]++;
         this.doughnutChartData = Object.assign({}, this.doughnutChartData);

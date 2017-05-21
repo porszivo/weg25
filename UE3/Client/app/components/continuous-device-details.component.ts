@@ -4,6 +4,8 @@ import {ControlUnit} from "../model/controlUnit";
 import {DeviceService} from "../services/device.service";
 import {Subject} from 'rxjs/Subject';
 
+declare var $:any;
+
 @Component({
   moduleId: module.id,
   selector: 'continuous-details',
@@ -35,6 +37,27 @@ export class ContinuousDeviceDetailsComponent implements OnInit {
     //TODO Lesen Sie die eingebenen Daten aus und verarbeiten Sie diese über die REST-Schnittstelle
 
     let time = new Date();
+
+    let changeDevice = {
+        id: this.device.id,
+        val: this.new_value,
+        timestamp: time,
+        type: "continuous"
+    };
+
+    for(var i = 0; i < localStorage.length; i++) {
+      var key = localStorage.key(i);
+      var item = JSON.parse(localStorage.getItem(key));
+    }
+
+    $.ajax({
+      url: 'http://localhost:8081/changeDeviceVal',
+      type: 'post',
+      headers: {'token': item.token },
+      contentType: "application/json; charset=utf-8",
+      dataType: 'json',
+      data: JSON.stringify(changeDevice)
+    });
 
     let _lineChartData: Array<any> = Object.assign({}, this.lineChartData);
     _lineChartData[0].data.push(this.new_value);
