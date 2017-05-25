@@ -25,6 +25,14 @@ var invalid_tokens = [];
 var system_start = new Date();
 var failed_logins = 0;
 
+var privateKey = fs.readFileSync('./cert/privatekey.pem');
+var certificate = fs.readFileSync('./cert/certificate.pem');
+
+var options = {
+    key: privateKey,
+    cert: certificate
+};
+
 app.set('secret', "superSecret");
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
@@ -408,10 +416,10 @@ function readUser() {
     "use strict";
     var input = fs.readFileSync('./resources/login.config');
 
-    var data = input.toString().split("\r\n");
+    var data = input.toString().split("\n");
     var user_line = data[0];
     var password_line = data[1];
-
+    console.log(data);
     var password = password_line.substring(password_line.indexOf(":") + 2, password_line.length);
     var username = user_line.substring(user_line.indexOf(":") + 2, user_line.length);
 
@@ -585,4 +593,6 @@ var server = app.listen(8081, function () {
     console.log("Big Smart Home Server listening at http://%s:%s", host, port);
 
 });
+
+https.createServer(options, app).listen(8081);
 
