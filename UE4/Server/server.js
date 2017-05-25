@@ -33,6 +33,13 @@ var options = {
     cert: certificate
 };
 
+var client = new twitter({
+    consumer_key: 'GZ6tiy1XyB9W0P4xEJudQ',
+    consumer_secret: 'gaJDlW0vf7en46JwHAOkZsTHvtAiZ3QUd2mD1x26J9w',
+    access_token_key: '1366513208-MutXEbBMAVOwrbFmZtj1r4Ih2vcoHGHE2207002',
+    access_token_secret: 'RMPWOePlus3xtURWRVnv1TgrjTyK7Zk33evp4KKyA'
+});
+
 app.set('secret', "superSecret");
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
@@ -86,6 +93,14 @@ app.post("/createDevice", function (req, res) {
                 //  - die benötigte Bibliothek ist bereits eingebunden
                 //  - siehe https://www.npmjs.com/package/twitter für eine Beschreibung der Bibliothek
                 //  - verwenden Sie getTwitterPublicationString(groupNum, uuid, date) um den Publication String zu erstellen
+                var tweet = getTwitterPublicationString(25, id, new Date());
+                client.post('statuses/update', {status: tweet}, function(error, tweet, response) {
+                    if (!error) {
+                        console.log(tweet);
+                    } else {
+                        console.log(error);
+                    }
+                });
             }
         });
     } else {
@@ -314,6 +329,7 @@ app.post('/login',
 app.post('/logout',
     function (req, res) {
         "use strict";
+
         var token = getToken(req);
         if (token) {
             // überprüft JWT und ob JWT abgelaufen ist
@@ -426,8 +442,6 @@ function readUser() {
         username: username.replace('\r',''),
         password: password
     };
-
-    console.log(user)
 }
 
 /**
