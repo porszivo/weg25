@@ -243,7 +243,6 @@ function readUser() {
         data = data.split(['\n']);
         user = {'username': data[0].replace('username: ', '').replace('\r', ''), 'password': data[1].replace('password: ', '')}
     })
-
 }
 
 function readDevices() {

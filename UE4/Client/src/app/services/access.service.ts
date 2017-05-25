@@ -11,11 +11,9 @@ export class AccessService implements CanActivate {
 
   private token_name = "access-token";
 
-  //TODO Passen Sie die URLs zu Ihrer REST-Schnittstelle, entsprechend der von Ihnen vorgenommenen Änderungen am Server, an
-
-  private loginURL = "http://localhost:8081/login";
-  private logoutURL = "http://localhost:8081/logout";
-  private statusURl = "http://localhost:8081/getStatus";
+  private loginURL = "https://localhost:8080/login";
+  private logoutURL = "https://localhost:8080/logout";
+  private statusURl = "https://localhost:8080/getStatus";
   private token: string = null;
 
   server_start: Date = new Date;

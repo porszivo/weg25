@@ -419,14 +419,15 @@ function readUser() {
     var data = input.toString().split("\n");
     var user_line = data[0];
     var password_line = data[1];
-    console.log(data);
     var password = password_line.substring(password_line.indexOf(":") + 2, password_line.length);
     var username = user_line.substring(user_line.indexOf(":") + 2, user_line.length);
 
     user = {
-        username: username,
+        username: username.replace('\r',''),
         password: password
     };
+
+    console.log(user)
 }
 
 /**
@@ -594,5 +595,4 @@ var server = app.listen(8081, function () {
 
 });
 
-https.createServer(options, app).listen(8081);
-
+https.createServer(options, app).listen(8080);
