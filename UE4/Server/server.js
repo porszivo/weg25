@@ -25,8 +25,8 @@ var invalid_tokens = [];
 var system_start = new Date();
 var failed_logins = 0;
 
-var privateKey = fs.readFileSync('./cert/privatekey.pem');
-var certificate = fs.readFileSync('./cert/certificate.pem');
+var privateKey = fs.readFileSync('./cert/key.pem');
+var certificate = fs.readFileSync('./cert/cert.pem');
 
 var options = {
     key: privateKey,
