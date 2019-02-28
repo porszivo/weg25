@@ -11,14 +11,15 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@angular/common": "~2.4.0",
-    "@angular/compiler": "~2.4.0",
-    "@angular/core": "~2.4.0",
-    "@angular/forms": "~2.4.0",
-    "@angular/http": "~2.4.0",
-    "@angular/platform-browser": "~2.4.0",
-    "@angular/platform-browser-dynamic": "~2.4.0",
-    "@angular/router": "~3.4.0",
+    "@angular/animations": "^4.4.7",
+    "@angular/common": "^4.4.7",
+    "@angular/compiler": "~4.4.7",
+    "@angular/core": "~4.4.7",
+    "@angular/forms": "~4.4.7",
+    "@angular/http": "~4.4.7",
+    "@angular/platform-browser": "~4.4.7",
+    "@angular/platform-browser-dynamic": "~4.4.7",
+    "@angular/router": "~4.4.7",
     "angular-in-memory-web-api": "~0.2.4",
     "chart.js": "^2.5.0",
     "core-js": "^2.4.1",
@@ -29,15 +30,14 @@
   },
   "devDependencies": {
     "@angular/cli": "1.0.0",
-    "@angular/compiler-cli": "^2.4.0",
+    "@angular/compiler-cli": "~4.4.7",
     "codelyzer": "~2.0.0",
     "ts-node": "~2.0.0",
     "tslint": "^5.1.0",
     "concurrently": "^3.1.0",
     "lite-server": "^2.2.2",
-    "typescript": "~2.0.10",
+    "typescript": "~2.2.0",
     "canonical-path": "0.0.2",
     "@types/node": "^6.0.46"
-  },
-  "repository": {}
+  }
 }
