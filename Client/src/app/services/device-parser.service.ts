@@ -1,6 +1,6 @@
-import {Device} from '../model/device';
-import {Injectable} from '@angular/core';
-import {ControlType} from '../model/controlType';
+import { Device } from '../model/device';
+import { Injectable } from '@angular/core';
+import { ControlType } from '../model/controlType';
 
 declare var drawThermometer: Function;
 declare var drawBulb: Function;
